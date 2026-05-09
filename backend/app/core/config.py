@@ -8,14 +8,14 @@ class Settings(BaseSettings):
         case_sensitive=False,
     )
 
-    app_name: str = "myapp"
+    app_name: str = "my_personal_web"
     app_env: str = "local"
     debug: bool = False
 
-    database_url: str = "postgresql+asyncpg://myapp:changeme@localhost:5432/myapp"
-    database_test_url: str = (
-        "postgresql+asyncpg://myapp:changeme@localhost:5432/myapp_test"
+    database_url: str = (
+        "postgresql+asyncpg://my_personal_web:changeme@localhost:5432/my_personal_web"
     )
+    database_test_url: str = "postgresql+asyncpg://my_personal_web:changeme@localhost:5432/my_personal_web_test"
     cors_origins: list[str] = ["http://localhost:3000"]
 
 
