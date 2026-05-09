@@ -516,6 +516,8 @@ PostgreSQL 文件元数据表 MUST 至少包含：
 - `.env` 仅允许用于本地开发，MUST NOT 提交真实 `.env`。
 - MUST 提供 `.env.example`。
 - 生产环境 MUST 通过 Docker Compose 环境变量或密钥管理系统注入配置。
+- 数据库凭据 MUST 保持跨文件一致：根目录 `.env(.example)` 的 `POSTGRES_USER`、`POSTGRES_PASSWORD`、`POSTGRES_DB`，`docker-compose.yml` 的数据库环境变量，以及 `backend/.env(.example)` 中 `DATABASE_URL` / `DATABASE_TEST_URL` 的用户名、密码、库名必须一致。
+- 若检测到上述配置不一致，质量门禁（quality gate）必须判定为 `FAIL`，禁止继续初始化或部署流程。
 - 不同环境 MUST 使用明确环境名：`local`、`test`、`staging`、`production`。
 - 启动时 MUST 校验关键配置，例如数据库 URL、JWT RS256 私钥/公钥、阿里云 OSS 配置、SMTP 配置、外部服务 endpoint。
 - 日志、错误响应和测试快照中 MUST 脱敏 secret、token、password、cookie、authorization header。
