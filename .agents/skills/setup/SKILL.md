@@ -18,6 +18,12 @@ description: 一键初始化满足前后端规范的 Monorepo 脚手架（FastAP
 - 前端状态：TanStack Query（服务端状态）+ Zustand（UI 状态），禁止 Redux
 - 前端组件：默认 Server Component，仅在必要时 `'use client'`
 
+执行 `/setup` 时，LLM 必须在输出中显式给出“配置读取回执（Config Read Receipt）”，至少包含：
+- 已读取规范：`docs/BACKEND_SPEC.md`、`docs/FRONTEND_SPEC.md`、`AGENTS.md`
+- 已读取 Skill：`.agents/skills/setup/SKILL.md`
+- 已读取钩子：`.codex/hooks.json`（若存在）
+- 未读取或不存在项（如有）
+
 ---
 
 ## 执行 SOP
