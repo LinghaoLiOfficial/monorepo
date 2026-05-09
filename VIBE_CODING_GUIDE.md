@@ -41,7 +41,7 @@ cd my-new-project
 codex
 ```
 
-### 第三步：初始化脚手架
+### 第三步：执行就绪性初始化
 
 在 Codex 中执行：
 
@@ -49,7 +49,7 @@ codex
 /setup
 ```
 
-LLM assistant 会询问项目名称，然后初始化 `backend/` 和 `frontend/` 目录，并将所有 `myapp` 占位符替换为你的项目名。
+LLM assistant 会按默认流程执行：项目名注入（Project Name Injection）→ 预检（Preflight）→ 最小补齐（Reconcile）→ 验证（Verify），仅补齐缺失项且不覆盖已有业务实现。
 
 ### 第四步：描述你的项目需求
 
@@ -256,7 +256,7 @@ LLM assistant 在每个阶段结束后会等待你确认。不要跳过这些确
 如果你想偏离默认架构（比如不用 Procrastinate，改用 Celery），直接告诉 LLM assistant：
 
 ```
-这个项目不需要任务队列，请在 setup 时跳过 Procrastinate 相关配置。
+这个项目不需要任务队列，请在 setup 的补齐阶段跳过 Procrastinate 相关模板占位。
 ```
 
 LLM assistant 会相应调整，但会提示你这偏离了 BACKEND_SPEC 的默认规范。
@@ -301,7 +301,7 @@ LLM assistant 会相应调整，但会提示你这偏离了 BACKEND_SPEC 的默�
 
 ```
 # 第一次打开项目
-1. /setup（初始化脚手架）
+1. /setup（执行项目名注入与就绪性检查）
 2. 描述项目背景和核心功能，LLM assistant 自动整理需求
 3. 告诉 LLM assistant 本轮要做哪些功能
 4. /new-feature 用户注册与登录
@@ -352,9 +352,9 @@ LLM assistant 会相应调整，但会提示你这偏离了 BACKEND_SPEC 的默�
 
 ### 修改项目名称
 
-`/setup` 执行时 LLM assistant 会提示你输入项目名，它会自动替换所有 `myapp` 占位符。
+`/setup` 在当前模板中默认执行“项目名注入（Project Name Injection）→ 预检（Preflight）→ 最小补齐（Reconcile）→ 验证（Verify）”，用于确认仓库已就绪。项目名替换是默认自动步骤。
 
-如果已经 setup 完成后想改名，告诉 LLM assistant：
+如果你需要改项目名，请显式告诉 LLM assistant 执行全局替换：
 
 ### 子路径部署（整合到个人网站）
 

@@ -13,7 +13,7 @@
 
 **任务列表：**
 
-- [ ] 执行 `/setup` Skill，初始化 backend/ 和 frontend/ 目录结构
+- [ ] 执行 `/setup` Skill（项目名注入→预检→最小补齐→验证），完成仓库就绪性初始化
 - [ ] 验证 `docker compose up` 可以启动 postgres + backend + worker + frontend
 - [ ] 验证 `GET /health` 返回 `{"status": "ok"}`
 - [ ] 验证前端首页可以在浏览器访问

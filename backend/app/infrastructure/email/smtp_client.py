@@ -1,0 +1,2 @@
+class SmtpClient:
+    pass

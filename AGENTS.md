@@ -30,7 +30,7 @@
 
 | Skill | 路径 | 用途 |
 |---|---|---|
-| `/setup` | `.agents/skills/setup/SKILL.md` | 一键初始化 backend/ + frontend/ 脚手架 |
+| `/setup` | `.agents/skills/setup/SKILL.md` | 默认执行“项目名注入→预检→最小补齐→验证”的幂等化初始化 |
 | `/new-feature` | `.agents/skills/new-feature/SKILL.md` | 垂直切片开发一个新功能（契约→后端→前端→测试） |
 | `/hotfix` | `.agents/skills/hotfix/SKILL.md` | 紧急修复线上 Bug（最小改动→根因定位→回归测试→加速 PR） |
 | `/db-migration` | `.agents/skills/db-migration/SKILL.md` | 创建并验证 Alembic 数据库迁移 |
@@ -92,7 +92,7 @@
 ### 阶段 1：冲刺规划
 
 - 从 `BACKLOG.md` 挑选任务移入 `SPRINT.md`
-- 搭建脚手架（首次用 `/setup`）
+- 执行 `/setup` 完成就绪性初始化（项目名注入→预检→最小补齐→验证）
 - 定义 DB Schema 和 API 契约
 
 ### 阶段 2：切片开发（使用 `/new-feature`）

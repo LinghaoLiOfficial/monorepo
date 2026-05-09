@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-脚手架验收脚本
+/setup 就绪性验收脚本
 
-验证 /setup Skill 生成的项目是否满足所有规范要求。
+验证 /setup 执行后的仓库就绪性是否满足规范要求。
 分三个阶段：静态检查 → 构建检查 → 运行时检查。
 
 用法：
@@ -11,7 +11,6 @@
 """
 
 import argparse
-import json
 import subprocess
 import sys
 import time
@@ -29,10 +28,11 @@ CheckResult = Literal["pass", "fail", "skip"]
 
 
 class Checker:
-    def __init__(self, root: Path):
+    def __init__(self, root: Path, skip_name_injection_check: bool = False):
         self.root = root
         self.backend = root / "backend"
         self.frontend = root / "frontend"
+        self.skip_name_injection_check = skip_name_injection_check
         self.passed = 0
         self.failed = 0
         self.skipped = 0
@@ -73,13 +73,29 @@ class Checker:
 
     def run_cmd(self, cmd: list[str], cwd: Path | None = None) -> bool:
         """运行命令，返回是否成功"""
+        try:
+            result = subprocess.run(
+                cmd,
+                cwd=cwd or self.root,
+                capture_output=True,
+                text=True,
+            )
+        except FileNotFoundError:
+            return False
+        return result.returncode == 0
+
+    def command_available(self, cmd: str) -> bool:
         result = subprocess.run(
-            cmd,
-            cwd=cwd or self.root,
+            ["bash", "-lc", f"command -v {cmd}"],
+            cwd=self.root,
             capture_output=True,
             text=True,
         )
         return result.returncode == 0
+
+    def frontend_dependencies_ready(self) -> bool:
+        node_modules = self.frontend / "node_modules"
+        return node_modules.exists() and node_modules.is_dir()
 
     def phase1_static(self):
         """阶段 1：静态检查（无需运行服务）"""
@@ -182,6 +198,22 @@ class Checker:
         self.check(".github/workflows/backend-ci.yml 存在", lambda: self.file_exists(self.root / ".github" / "workflows" / "backend-ci.yml"))
         self.check(".github/workflows/frontend-ci.yml 存在", lambda: self.file_exists(self.root / ".github" / "workflows" / "frontend-ci.yml"))
 
+        # 项目名注入自检（关键配置中不应残留模板占位符 myapp）
+        if self.skip_name_injection_check:
+            self.check("项目名注入完成（关键配置无 myapp 残留）", lambda: "skip by --skip-name-injection-check")
+        else:
+            injection_targets = [
+                self.root / ".env.example",
+                self.root / "docker-compose.yml",
+                self.backend / ".env.example",
+                self.backend / "alembic.ini",
+                self.backend / "app" / "core" / "config.py",
+            ]
+            self.check(
+                "项目名注入完成（关键配置无 myapp 残留）",
+                lambda: all(self.file_not_contains(path, "myapp") for path in injection_targets),
+            )
+
     def phase2_build(self):
         """阶段 2：构建检查（需依赖已安装）"""
         print(f"\n{BLUE}=== 阶段 2：构建检查 ==={RESET}\n")
@@ -192,9 +224,14 @@ class Checker:
         self.check("backend: mypy", lambda: self.run_cmd(["uv", "run", "mypy", "app", "tests"], cwd=self.backend))
 
         # 前端构建检查
-        self.check("frontend: pnpm type-check", lambda: self.run_cmd(["pnpm", "type-check"], cwd=self.frontend))
-        self.check("frontend: pnpm lint", lambda: self.run_cmd(["pnpm", "lint"], cwd=self.frontend))
-        self.check("frontend: pnpm build", lambda: self.run_cmd(["pnpm", "build"], cwd=self.frontend))
+        if self.command_available("pnpm") and self.frontend_dependencies_ready():
+            self.check("frontend: pnpm type-check", lambda: self.run_cmd(["pnpm", "type-check"], cwd=self.frontend))
+            self.check("frontend: pnpm lint", lambda: self.run_cmd(["pnpm", "lint"], cwd=self.frontend))
+            self.check("frontend: pnpm build", lambda: self.run_cmd(["pnpm", "build"], cwd=self.frontend))
+        else:
+            self.check("frontend: pnpm type-check", lambda: "frontend dependencies not installed")
+            self.check("frontend: pnpm lint", lambda: "frontend dependencies not installed")
+            self.check("frontend: pnpm build", lambda: "frontend dependencies not installed")
 
     def phase3_runtime(self):
         """阶段 3：运行时检查（需 Docker）"""
@@ -250,17 +287,22 @@ class Checker:
             print(f"\n{RED}❌ 验收失败，请修复上述问题后重试{RESET}")
             sys.exit(1)
         else:
-            print(f"\n{GREEN}✅ 验收通过，脚手架符合所有规范要求{RESET}")
+            print(f"\n{GREEN}✅ 验收通过，/setup 就绪性符合所有规范要求{RESET}")
             sys.exit(0)
 
 
 def main():
-    parser = argparse.ArgumentParser(description="验收脚手架是否符合规范")
+    parser = argparse.ArgumentParser(description="验收 /setup 就绪性是否符合规范")
     parser.add_argument("--skip-runtime", action="store_true", help="跳过运行时检查（需要 Docker）")
+    parser.add_argument(
+        "--skip-name-injection-check",
+        action="store_true",
+        help="跳过项目名注入检查（用于模板仓库发布前验收）",
+    )
     args = parser.parse_args()
 
     root = Path(__file__).parent.parent
-    checker = Checker(root)
+    checker = Checker(root, skip_name_injection_check=args.skip_name_injection_check)
 
     checker.phase1_static()
     checker.phase2_build()

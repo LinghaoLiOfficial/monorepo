@@ -852,7 +852,7 @@ uv run pytest
 
 ## 19. 项目脚手架模板要求
 
-本节定义脚手架的**能力边界和禁止项**。具体文件列表、目录结构和文件内容由 `.agents/skills/setup/SKILL.md` 维护，两者以 Skill 为准，本节不重复列举。
+本节定义脚手架的**能力边界和禁止项**。`/setup` 的执行模型为默认单流程：项目名注入（Project Name Injection）→ 预检（Preflight）→ 最小补齐（Reconcile）→ 验证（Verify）。具体文件列表、目录结构和文件内容由 `.agents/skills/setup/SKILL.md` 维护，两者以 Skill 为准，本节不重复列举。
 
 ### 19.1 脚手架必须覆盖的基础能力
 

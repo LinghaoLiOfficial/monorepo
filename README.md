@@ -1,7 +1,7 @@
 # monorepo
 
 一个面向 AI 协作开发的全栈 Monorepo 模板，技术栈为 **FastAPI + Next.js**。
-目标是让你在几分钟内完成项目初始化，并通过标准化工作流持续交付。
+目标是让你基于已预置的前后端基线快速进入业务开发，并通过标准化工作流持续交付。
 
 ## 这是什么
 
@@ -33,7 +33,7 @@
 git clone <your-repo-url>
 cd <your-project-name>
 
-# 2. 在 Codex 中初始化脚手架
+# 2. 在 Codex 中执行就绪性检查
 /setup
 
 # 3. 启动依赖服务
