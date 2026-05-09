@@ -2,9 +2,9 @@ services:
   postgres:
     image: postgres:16
     environment:
-      POSTGRES_USER: my_personal_web
+      POSTGRES_USER: myapp
       POSTGRES_PASSWORD: changeme
-      POSTGRES_DB: my_personal_web
+      POSTGRES_DB: myapp
     ports:
       - '5432:5432'
 
@@ -13,7 +13,7 @@ services:
     working_dir: /app
     command: uv run uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
     environment:
-      DATABASE_URL: postgresql+asyncpg://my_personal_web:changeme@postgres:5432/my_personal_web
+      DATABASE_URL: postgresql+asyncpg://myapp:changeme@postgres:5432/myapp
     ports:
       - '8000:8000'
     depends_on:
@@ -24,7 +24,7 @@ services:
     working_dir: /app
     command: uv run python -m app.infrastructure.queue.worker
     environment:
-      DATABASE_URL: postgresql+asyncpg://my_personal_web:changeme@postgres:5432/my_personal_web
+      DATABASE_URL: postgresql+asyncpg://myapp:changeme@postgres:5432/myapp
     depends_on:
       - postgres
 
