@@ -308,8 +308,27 @@ class Checker:
             print(f"\n{RED}❌ 验收失败，请修复上述问题后重试{RESET}")
             sys.exit(1)
         else:
+            self.print_post_setup_guidance()
             print(f"\n{GREEN}✅ 验收通过，/setup 就绪性符合所有规范要求{RESET}")
             sys.exit(0)
+
+    def print_post_setup_guidance(self) -> None:
+        """初始化完成后的环境变量与运行信息提示"""
+        print(f"\n{BLUE}=== 初始化后提示 ==={RESET}\n")
+        print("环境变量（Environment Variables）")
+        print("- 请将模板变量替换为真实值后再进入业务开发/部署。")
+        print("- 根目录: .env.example（Docker Compose 使用）")
+        print("- 后端: backend/.env.example")
+        print("- 前端: frontend/.env.example（如存在）")
+        print("- 重点变量: 数据库账号/密码、JWT 密钥、第三方服务密钥、CORS 白名单。")
+        print("")
+        print("运行信息（Runtime Endpoints）")
+        print("- Host/IP: localhost (127.0.0.1)")
+        print("- Frontend: http://localhost:3000")
+        print("- Backend API: http://localhost:8000")
+        print("- Backend Health: http://localhost:8000/health")
+        print("- Backend Metrics: http://localhost:8000/metrics")
+        print("- 通过 Docker 启动: docker compose up -d")
 
 
 def main():
