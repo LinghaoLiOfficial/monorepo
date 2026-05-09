@@ -84,6 +84,22 @@ class Checker:
             return False
         return result.returncode == 0
 
+    def wait_cmd(
+        self,
+        cmd: list[str],
+        *,
+        cwd: Path | None = None,
+        timeout_seconds: int = 60,
+        interval_seconds: int = 2,
+    ) -> bool:
+        """Retry command until success or timeout."""
+        deadline = time.time() + timeout_seconds
+        while time.time() < deadline:
+            if self.run_cmd(cmd, cwd=cwd):
+                return True
+            time.sleep(interval_seconds)
+        return False
+
     def command_available(self, cmd: str) -> bool:
         result = subprocess.run(
             ["bash", "-lc", f"command -v {cmd}"],
@@ -245,29 +261,34 @@ class Checker:
             return
 
         # 等待服务启动
-        print(f"{YELLOW}等待服务启动（15 秒）...{RESET}")
-        time.sleep(15)
+        print(f"{YELLOW}等待服务启动（最多 90 秒）...{RESET}")
 
         # 后端健康检查
         self.check(
             "backend: GET /health 返回 200",
-            lambda: self.run_cmd(["curl", "-f", "-s", "http://localhost:8000/health"]),
+            lambda: self.wait_cmd(["curl", "-f", "-s", "http://localhost:8000/health"], timeout_seconds=90),
         )
         self.check(
             "backend: GET /metrics 返回 200",
-            lambda: self.run_cmd(["curl", "-f", "-s", "http://localhost:8000/metrics"]),
+            lambda: self.wait_cmd(["curl", "-f", "-s", "http://localhost:8000/metrics"], timeout_seconds=90),
         )
 
         # 前端健康检查
         self.check(
             "frontend: 3000 端口响应",
-            lambda: self.run_cmd(["curl", "-f", "-s", "-o", "/dev/null", "http://localhost:3000"]),
+            lambda: self.wait_cmd(
+                ["curl", "-f", "-s", "-o", "/dev/null", "http://localhost:3000"],
+                timeout_seconds=120,
+            ),
         )
 
         # Alembic 迁移链路
         self.check(
             "alembic: current 无报错",
-            lambda: self.run_cmd(["uv", "run", "alembic", "current"], cwd=self.backend),
+            lambda: self.wait_cmd(
+                ["docker", "compose", "exec", "-T", "backend", "sh", "-lc", "uv run alembic current"]
+            , timeout_seconds=60
+            ),
         )
 
         # 清理
