@@ -73,8 +73,25 @@ description: 默认执行“项目名注入→预检→最小补齐→验证”�
 
 1. 输出环境变量检查清单：`docs/SETUP_ENV_CHECKLIST.md`
 2. 提示用户完成替换
-3. 执行逐项检查：`uv run scripts/check_env_replacements.py`
+3. 执行逐项检查与密码同步：`uv run scripts/check_env_replacements.py --sync-db-password`
 4. 若检查失败，停止并返回失败项，等待用户修正后重试
+
+### 0.5 数据库密码联动同步（DB Password Sync, 必须）
+
+当用户在 `.env.example` 中修改 `POSTGRES_PASSWORD` 后，`/setup` 必须同步检查并提示以下一致性：
+
+- `docker-compose.yml` 中数据库服务使用的密码值必须与 `.env.example` 的 `POSTGRES_PASSWORD` 一致。
+- `backend/.env.example` 中 `DATABASE_URL`、`DATABASE_TEST_URL` 的密码段必须与 `POSTGRES_PASSWORD` 一致。
+- 若不一致，必须自动同步（auto sync）以下位置为根目录 `POSTGRES_PASSWORD`，再继续后续检查：
+  - `docker-compose.yml` 的 `POSTGRES_PASSWORD`
+  - `docker-compose.yml` 中 backend/worker 的 `DATABASE_URL` 密码段
+  - `backend/.env.example` 的 `DATABASE_URL`、`DATABASE_TEST_URL` 密码段
+
+约束：
+
+- 仅在检测到模板占位符或明显不一致时执行最小修正（minimal fix）。
+- 不得覆盖用户已自定义且一致的业务配置值。
+- 如无法安全判定应改写的目标，标记为 `FAIL` 并停止，等待人工确认。
 
 ---
 
