@@ -36,19 +36,26 @@ cd <your-project-name>
 # 2. 在 Codex 中执行就绪性检查
 /setup
 
-# 3. 启动依赖服务
+# 3. 启动全部服务（前端 + 后端 + 数据库 + worker）
 docker compose up -d
 
-# 4. 启动后端
-cd backend && uv sync && uv run uvicorn app.main:app --reload
-
-# 5. 启动前端（新终端）
-cd frontend && pnpm install && pnpm dev
+# 4. 查看服务状态（可选）
+docker compose ps
 ```
 
 验证：
 - 后端健康检查：`http://localhost:8000/health`
 - 前端首页：`http://localhost:3000`
+
+## Docker 重启策略
+
+```bash
+# 日常开发（快速应用一般代码变更）
+docker compose up -d
+
+# 无脑全量重建（任意修改都确保生效）
+docker compose down && docker compose up -d --build
+```
 
 ## 项目结构
 
@@ -82,7 +89,7 @@ monorepo/
 | [BACKLOG.md](BACKLOG.md) | 需求池 |
 | [CHANGELOG.md](CHANGELOG.md) | 变更归档 |
 
-## Vibe Coding 配置体系（为什么这个模板和普通模板不一样）
+## Vibe Coding 配置体系
 
 这套模板的核心差异不只在技术栈，而在于**配置驱动的协作开发流程**。同样是 FastAPI + Next.js，开发节奏和产出质量会因为这些 Codex 配置而显著不同。
 
