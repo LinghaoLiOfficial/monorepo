@@ -12,10 +12,10 @@ class Settings(BaseSettings):
     app_env: str = "local"
     debug: bool = False
 
-    database_url: str = "postgresql+asyncpg://my_personal_web:changeme@localhost:5432/my_personal_web"
-    database_test_url: str = (
-        "postgresql+asyncpg://my_personal_web:changeme@localhost:5432/my_personal_web_test"
+    database_url: str = (
+        "postgresql+asyncpg://my_personal_web:changeme@localhost:5432/my_personal_web"
     )
+    database_test_url: str = "postgresql+asyncpg://my_personal_web:changeme@localhost:5432/my_personal_web_test"
     cors_origins: list[str] = ["http://localhost:3000"]
 
 
