@@ -7,8 +7,8 @@
 
 - 适用于前后端分离的 SaaS / 管理后台 / API 服务项目
 - 内置后端、前端、数据库、测试与 CI 基础规范
-- 支持基于 Claude Code Skills 的需求拆解与垂直切片开发
-- 执行框架为 Claude Code，底层模型可按需切换为 Claude / OpenAI / DeepSeek 等提供方
+- 支持基于 Codex Skills 的需求拆解与垂直切片开发
+- 执行框架为 Codex，底层模型可按需切换为 OpenAI / DeepSeek 等提供方
 
 ## 适合谁
 
@@ -33,7 +33,7 @@
 git clone <your-repo-url>
 cd <your-project-name>
 
-# 2. 在 Claude Code 中初始化脚手架
+# 2. 在 Codex 中初始化脚手架
 /setup
 
 # 3. 启动依赖服务
@@ -57,7 +57,7 @@ monorepo/
 ├── backend/        # FastAPI 后端
 ├── frontend/       # Next.js 前端
 ├── docs/           # 架构规范文档
-├── .claude/skills/ # Claude Code Skills
+├── .agents/skills/ # Codex Skills
 ├── SPRINT.md       # 当前冲刺任务
 ├── BACKLOG.md      # 需求池
 ├── CHANGELOG.md    # 任务归档
@@ -75,7 +75,7 @@ monorepo/
 | 文档 | 用途 |
 |---|---|
 | [VIBE_CODING_GUIDE.md](VIBE_CODING_GUIDE.md) | 使用指南（从这里开始） |
-| [CLAUDE.md](CLAUDE.md) | AI 智能体行为约束 |
+| [AGENTS.md](AGENTS.md) | AI 智能体行为约束 |
 | [docs/BACKEND_SPEC.md](docs/BACKEND_SPEC.md) | 后端架构法典 |
 | [docs/FRONTEND_SPEC.md](docs/FRONTEND_SPEC.md) | 前端架构法典 |
 | [SPRINT.md](SPRINT.md) | 当前冲刺任务 |

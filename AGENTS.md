@@ -30,12 +30,12 @@
 
 | Skill | 路径 | 用途 |
 |---|---|---|
-| `/setup` | `.claude/skills/setup/SKILL.md` | 一键初始化 backend/ + frontend/ 脚手架 |
-| `/new-feature` | `.claude/skills/new-feature/SKILL.md` | 垂直切片开发一个新功能（契约→后端→前端→测试） |
-| `/hotfix` | `.claude/skills/hotfix/SKILL.md` | 紧急修复线上 Bug（最小改动→根因定位→回归测试→加速 PR） |
-| `/db-migration` | `.claude/skills/db-migration/SKILL.md` | 创建并验证 Alembic 数据库迁移 |
-| `/pr-review` | `.claude/skills/pr-review/SKILL.md` | 创建 PR 并执行代码审查清单 |
-| `/test` | `.claude/skills/test/SKILL.md` | 执行后端、前端、集成全套测试验证 |
+| `/setup` | `.agents/skills/setup/SKILL.md` | 一键初始化 backend/ + frontend/ 脚手架 |
+| `/new-feature` | `.agents/skills/new-feature/SKILL.md` | 垂直切片开发一个新功能（契约→后端→前端→测试） |
+| `/hotfix` | `.agents/skills/hotfix/SKILL.md` | 紧急修复线上 Bug（最小改动→根因定位→回归测试→加速 PR） |
+| `/db-migration` | `.agents/skills/db-migration/SKILL.md` | 创建并验证 Alembic 数据库迁移 |
+| `/pr-review` | `.agents/skills/pr-review/SKILL.md` | 创建 PR 并执行代码审查清单 |
+| `/test` | `.agents/skills/test/SKILL.md` | 执行后端、前端、集成全套测试验证 |
 
 执行任意 Skill 前，必须先读取对应 SKILL.md。
 

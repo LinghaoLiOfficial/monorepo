@@ -852,7 +852,7 @@ uv run pytest
 
 ## 19. 项目脚手架模板要求
 
-本节定义脚手架的**能力边界和禁止项**。具体文件列表、目录结构和文件内容由 `.claude/skills/setup/SKILL.md` 维护，两者以 Skill 为准，本节不重复列举。
+本节定义脚手架的**能力边界和禁止项**。具体文件列表、目录结构和文件内容由 `.agents/skills/setup/SKILL.md` 维护，两者以 Skill 为准，本节不重复列举。
 
 ### 19.1 脚手架必须覆盖的基础能力
 
@@ -892,7 +892,7 @@ uv run pytest
 
 ### 19.3 单一事实来源
 
-脚手架的具体实现（目录结构、文件内容、执行步骤、质量检查清单）MUST 维护在 `.claude/skills/setup/SKILL.md`。
+脚手架的具体实现（目录结构、文件内容、执行步骤、质量检查清单）MUST 维护在 `.agents/skills/setup/SKILL.md`。
 
 每次本规范的技术选型或约束发生变更时，MUST 同步更新 Skill，并确保 Skill 中的代码通过本规范定义的 GitHub Actions 质量门禁。
 

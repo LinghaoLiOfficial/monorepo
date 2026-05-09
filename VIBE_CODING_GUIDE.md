@@ -1,19 +1,19 @@
 # Vibe Coding 使用指南
 
-> 本指南说明如何基于此模板，用 Claude Code 开发一个全新的 Web 全栈项目。
+> 本指南说明如何基于此模板，用 Codex 开发一个全新的 Web 全栈项目。
 
 ---
 
 ## 一、什么是 Vibe Coding 模式
 
-本模板采用"敏捷 Vibe Coding"模式：你负责**决策**，Claude Code 负责**执行**。
+本模板采用"敏捷 Vibe Coding"模式：你负责**决策**，Codex 负责**执行**。
 
 核心流程：
 1. 你描述需求 → LLM assistant 拆解为用户故事
 2. 你确认方案 → LLM assistant 按契约先行顺序实现
 3. 你验收结果 → LLM assistant 运行质量门禁并归档
 
-Claude Code 会自动切换角色（PM / Tech Lead / Full-Stack / QA）模式，你只需要用自然语言沟通。
+Codex 会自动切换角色（PM / Tech Lead / Full-Stack / QA）模式，你只需要用自然语言沟通。
 
 ---
 
@@ -34,16 +34,16 @@ git commit -m "chore: initial project scaffold"
 git remote add origin <your-repo-url>
 ```
 
-### 第二步：用 Claude Code 打开项目
+### 第二步：用 Codex 打开项目
 
 ```bash
 cd my-new-project
-claude
+codex
 ```
 
 ### 第三步：初始化脚手架
 
-在 Claude Code 中执行：
+在 Codex 中执行：
 
 ```
 /setup
@@ -403,7 +403,7 @@ setup 时请注意：
 
 ### LLM assistant 不遵守架构规范
 
-检查 `CLAUDE.md` 是否在项目根目录，Claude Code 会自动加载它。
+检查 `AGENTS.md` 是否在项目根目录，Codex 会自动加载它。
 
 如果 LLM assistant 偏离了规范，直接指出：
 
@@ -414,7 +414,7 @@ setup 时请注意：
 
 ### Hooks 不生效
 
-检查 `.claude/settings.json` 中的 hooks 配置。hooks 依赖 `git` 命令获取仓库根目录，确保项目是 git 仓库：
+检查 `.codex/hooks.json` 中的 hooks 配置。hooks 依赖 `git` 命令获取仓库根目录，确保项目是 git 仓库：
 
 ```bash
 git status  # 确认在 git 仓库中
@@ -450,7 +450,7 @@ docker compose up -d
 
 | 文档 | 用途 |
 |---|---|
-| [CLAUDE.md](CLAUDE.md) | 全局开发规约（LLM assistant 自动读取） |
+| [AGENTS.md](AGENTS.md) | 全局开发规约（LLM assistant 自动读取） |
 | [docs/BACKEND_SPEC.md](docs/BACKEND_SPEC.md) | 后端架构法典（20 节详细规范） |
 | [docs/FRONTEND_SPEC.md](docs/FRONTEND_SPEC.md) | 前端架构法典（20 节详细规范） |
 | [SPRINT.md](SPRINT.md) | 当前冲刺任务 |

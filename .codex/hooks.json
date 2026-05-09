@@ -1,0 +1,19 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "FILE=$(echo \"$CODEX_TOOL_INPUT\" | python3 -c \"import sys,json; d=json.load(sys.stdin); print(d.get('file_path',''))\" 2>/dev/null); REPO=$(git -C \"$(dirname \"$FILE\")\" rev-parse --show-toplevel 2>/dev/null); if [ -n \"$REPO\" ] && [ -f \"$REPO/backend/pyproject.toml\" ] && echo \"$FILE\" | grep -q '/backend/.*\\.py$'; then uv run --project \"$REPO/backend\" ruff check --fix \"$FILE\" 2>/dev/null || true; fi"
+          },
+          {
+            "type": "command",
+            "command": "FILE=$(echo \"$CODEX_TOOL_INPUT\" | python3 -c \"import sys,json; d=json.load(sys.stdin); print(d.get('file_path',''))\" 2>/dev/null); REPO=$(git -C \"$(dirname \"$FILE\")\" rev-parse --show-toplevel 2>/dev/null); if [ -n \"$REPO\" ] && [ -f \"$REPO/frontend/package.json\" ] && echo \"$FILE\" | grep -qE '/frontend/.*\\.(ts|tsx)$'; then cd \"$REPO/frontend\" && pnpm exec tsc --noEmit --skipLibCheck 2>/dev/null || true; fi"
+          }
+        ]
+      }
+    ]
+  }
+}
