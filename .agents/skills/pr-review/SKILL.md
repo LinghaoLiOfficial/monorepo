@@ -85,7 +85,7 @@ git diff main...HEAD
 - [ ] 表单包含 pending / error / success 状态
 - [ ] 异步 UI 处理 Loading / Error / Empty / Success 四态
 - [ ] 无敏感信息存入 localStorage 或 Zustand persist
-- [ ] 移动端布局可用
+- [ ] PC 端页面结构与核心交互已完成，移动端布局可用
 
 ### 步骤三：生成 PR 描述
 
