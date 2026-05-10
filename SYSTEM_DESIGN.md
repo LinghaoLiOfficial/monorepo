@@ -154,18 +154,3 @@
 - 暂不展开能力（Deferred Capabilities）：待补充
 - 设计验证重点（Validation Focus）：待补充
 
-## 17. 全局决策记录（Global Decisions / ADR Summary）
-
-> 记录格式建议：`GD-YYYYMMDD-序号`
-
-- Decision ID: GD-TBD
-  - Topic: 待补充
-  - Decision: 待补充
-  - Alternatives: 待补充
-  - Rationale: 待补充
-  - Status: Proposed | Accepted | Deprecated
-
-## 18. 变更记录（Change Log）
-
-- 2026-05-10: 初始化文档模板（Initialize template）。
-- 2026-05-10: 对齐 `web_system_design_prompt_working_draft` 的 16 章节结构（Align with working draft structure）。
