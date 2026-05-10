@@ -135,6 +135,8 @@ LLM assistant 会按以下顺序自动执行，**每个阶段完成后等待你�
 - 运行 ruff + mypy + pytest
 
 **阶段 4：前端实现**
+- 先完成 PC 端（desktop / web）页面结构、信息层级和核心交互
+- 再补齐移动端（mobile web）响应式布局
 - TypeScript 类型定义
 - Zod 表单校验 Schema
 - TanStack Query hooks

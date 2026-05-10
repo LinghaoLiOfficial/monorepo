@@ -90,7 +90,14 @@ Frontend Engineering Specification for AI-assisted Development
 
 ---
 
-### 2.3 类型安全
+### 2.3 响应式设计顺序
+
+- 所有新功能的 UI 设计 MUST 默认先完成 PC 端（desktop / web）布局，再补齐移动端（mobile web）布局。
+- 先输出 PC 端主信息层级、交互流程和视觉稿，再基于同一功能收敛移动端断点方案。
+- 移动端设计 MUST 作为桌面端方案的响应式延展，而不是独立重写。
+- 若存在明显的移动端优先场景，必须在任务说明或方案中显式标注原因。
+
+### 2.4 类型安全
 
 - 禁止使用裸 `any`。
 - 外部输入必须先经过 Zod 校验，包括：
@@ -584,6 +591,7 @@ const store = useUiStore()
 * 关键异常分支。
 * 空状态。
 * 主要移动端布局。
+* 响应式设计顺序需先 PC 端再移动端。
 
 ### 13.3 Storybook
 
@@ -740,6 +748,7 @@ pnpm build-storybook
 * 关键路径有测试或说明无需测试的理由。
 * Loading / Error / Empty / Success 状态完整。
 * 移动端布局可用。
+* PC 端方案已先行设计并落地。
 * 基础可访问性可用。
 * 无敏感信息泄漏。
 * 无无用 console。

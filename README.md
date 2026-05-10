@@ -118,6 +118,11 @@ monorepo/
 - 作用：在编辑后自动执行质量动作（当前仓库中包括 Python 文件的 `ruff check --fix`，以及前端 TS/TSX 的类型检查）。
 - 你可以把它理解为：低成本、即时反馈的“自动护栏”。
 
+### 5) 前端默认设计顺序
+
+- 前端功能设计默认先做 PC 端（desktop / web），再补移动端（mobile web）。
+- 这条顺序约束已同步到 [`docs/FRONTEND_SPEC.md`](docs/FRONTEND_SPEC.md) 和相关 Skills。
+
 ## 推荐阅读顺序（新人上手）
 
 1. 先读 [`VIBE_CODING_GUIDE.md`](VIBE_CODING_GUIDE.md) 了解协作方式。

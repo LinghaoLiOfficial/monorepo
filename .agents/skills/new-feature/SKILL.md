@@ -174,19 +174,25 @@ frontend/src/features/<feature>/
 ```
 frontend/src/features/<feature>/
 └── components/
-    ├── <Feature>List.tsx      # 列表（Server Component 优先）
-    ├── <Feature>Form.tsx      # 表单（Client Component，含 pending/error/success）
-    └── <Feature>Card.tsx      # 卡片（按需）
+    ├── <Feature>List.tsx      # 列表（Server Component 优先，先完成 PC 端布局）
+    ├── <Feature>Form.tsx      # 表单（Client Component，先完成 PC 端交互，再补移动端适配）
+    └── <Feature>Card.tsx      # 卡片（按需，先桌面端后移动端）
 ```
 
 #### 4.6 页面路由
 
 ```
 frontend/src/app/(dashboard)/<feature>/
-├── page.tsx        # Server Component，数据预取
+├── page.tsx        # Server Component，数据预取，先完成 PC 端页面结构
 ├── loading.tsx     # Suspense fallback
-└── error.tsx       # 错误边界
+└── error.tsx       # 错误边界，随后补齐移动端响应式表现
 ```
+
+前端实现顺序必须遵循：
+
+1. 先设计并实现 PC 端（desktop / web）页面结构、信息层级和核心交互。
+2. 再基于同一套功能与数据流补齐移动端（mobile web）响应式布局。
+3. 若移动端需要偏离桌面端结构，必须说明原因并保持同一业务语义。
 
 #### 4.7 前端验证
 
