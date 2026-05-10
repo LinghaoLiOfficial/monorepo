@@ -390,6 +390,22 @@
       - [BLOCK 5] 该段定义函数 `check_non_empty`（Function），封装一个可复用的处理步骤。
       - [BLOCK 6] 该段定义函数 `check_not_contains`（Function），封装一个可复用的处理步骤。
       - [BLOCK +] 已合并/省略 24 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+    - [FILE] `scripts/check_project_map.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+      - [BLOCK 1] 该段定义“!/usr/bin/env python3”主题（Topic），用于组织本文件的核心语义边界。
+      - [BLOCK 2] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+      - [BLOCK 3] 该段围绕“ROOT = Path(__file__).resolve().parents[1]”展开（Content Block），承载一组相关实现或说明。
+      - [BLOCK 4] 该段定义函数 `sha256`（Function），封装一个可复用的处理步骤。
+      - [BLOCK 5] 该段定义函数 `main`（Function），封装一个可复用的处理步骤。
+      - [BLOCK 6] 该段围绕“before = sha256(TARGET)”展开（Content Block），承载一组相关实现或说明。
+      - [BLOCK +] 已合并/省略 4 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+    - [FILE] `scripts/generate_project_map.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+      - [BLOCK 1] 该段定义“!/usr/bin/env python3”主题（Topic），用于组织本文件的核心语义边界。
+      - [BLOCK 2] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+      - [BLOCK 3] 该段围绕“ROOT = Path(__file__).resolve().parents[1]”展开（Content Block），承载一组相关实现或说明。
+      - [BLOCK 4] 该段定义函数 `tracked_files`（Function），封装一个可复用的处理步骤。
+      - [BLOCK 5] 该段定义函数 `dir_def`（Function），封装一个可复用的处理步骤。
+      - [BLOCK 6] 该段定义函数 `file_def`（Function），封装一个可复用的处理步骤。
+      - [BLOCK +] 已合并/省略 15 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
     - [FILE] `scripts/verify_setup.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
       - [BLOCK 1] 该段定义“!/usr/bin/env python3”主题（Topic），用于组织本文件的核心语义边界。
       - [BLOCK 2] 该段围绕“验证 /setup 执行后的仓库就绪性是否满足规范要求。”展开（Content Block），承载一组相关实现或说明。

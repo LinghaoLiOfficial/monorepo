@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+set -eu
+
+REPO_ROOT=$(git rev-parse --show-toplevel)
+cd "$REPO_ROOT"
+
+printf '%s\n' '[pre-commit] Running project map consistency check...'
+python3 scripts/check_project_map.py
