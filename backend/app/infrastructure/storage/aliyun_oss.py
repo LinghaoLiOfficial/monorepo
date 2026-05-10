@@ -111,7 +111,9 @@ class AliyunOssStorage(ObjectStorageClient):
             content_type=resolved_type,
         )
         await self._run_sync(self._client.put_object, req)
-        logger.info("oss_upload_succeeded", key=str(file_path), content_type=resolved_type)
+        logger.info(
+            "oss_upload_succeeded", key=str(file_path), content_type=resolved_type
+        )
 
     async def load(self, file_path: Path) -> tuple[bytes, str]:
         result: Any = await self._run_sync(
@@ -191,7 +193,9 @@ class AliyunOssStorage(ObjectStorageClient):
 
         return await asyncio.to_thread(collect)
 
-    async def _run_sync(self, fn: Callable[P, T], *args: P.args, **kwargs: P.kwargs) -> T:
+    async def _run_sync(
+        self, fn: Callable[P, T], *args: P.args, **kwargs: P.kwargs
+    ) -> T:
         try:
             return await asyncio.to_thread(fn, *args, **kwargs)
         except Exception as exc:  # pragma: no cover - defensive wrapper

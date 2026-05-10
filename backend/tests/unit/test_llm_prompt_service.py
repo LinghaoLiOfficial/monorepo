@@ -57,7 +57,11 @@ def test_parse_json_output_invalid() -> None:
 
 
 def test_validate_schema_fail() -> None:
-    schema = {"type": "object", "required": ["x"], "properties": {"x": {"type": "string"}}}
+    schema = {
+        "type": "object",
+        "required": ["x"],
+        "properties": {"x": {"type": "string"}},
+    }
     with pytest.raises(LLMSchemaValidationError):
         LLMPromptService.validate_schema(data={"y": "z"}, schema=schema)
 

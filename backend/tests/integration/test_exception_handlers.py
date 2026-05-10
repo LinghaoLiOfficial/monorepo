@@ -42,7 +42,9 @@ app.include_router(router)
 
 @pytest.mark.asyncio
 async def test_business_exception_response(client: AsyncClient) -> None:
-    response = await client.get("/test/business", headers={"x-request-id": "rid-business"})
+    response = await client.get(
+        "/test/business", headers={"x-request-id": "rid-business"}
+    )
 
     assert response.status_code == 404
     payload = response.json()
@@ -66,7 +68,9 @@ async def test_tech_exception_response(client: AsyncClient) -> None:
 
 @pytest.mark.asyncio
 async def test_unhandled_exception_response(client: AsyncClient) -> None:
-    response = await client.get("/test/unhandled", headers={"x-request-id": "rid-unhandled"})
+    response = await client.get(
+        "/test/unhandled", headers={"x-request-id": "rid-unhandled"}
+    )
 
     assert response.status_code == 500
     payload = response.json()

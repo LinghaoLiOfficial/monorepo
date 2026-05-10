@@ -48,7 +48,9 @@ class LLMPromptService:
         timeout_seconds: float | None = None,
         max_attempts: int = 2,
     ) -> LLMPromptResult:
-        messages = self.render_messages(template_path=template_path, params=input_params)
+        messages = self.render_messages(
+            template_path=template_path, params=input_params
+        )
         schema = self.load_schema(schema_path)
 
         last_error: Exception | None = None
@@ -77,7 +79,9 @@ class LLMPromptService:
                     continue
                 raise
 
-        raise LLMPromptServiceError("Unhandled LLM prompt service state") from last_error
+        raise LLMPromptServiceError(
+            "Unhandled LLM prompt service state"
+        ) from last_error
 
     @staticmethod
     def render_messages(
@@ -98,7 +102,9 @@ class LLMPromptService:
         user_text = user_raw.strip()
 
         if not system_text or not user_text:
-            raise LLMTemplateFormatError("System and user prompt parts must be non-empty")
+            raise LLMTemplateFormatError(
+                "System and user prompt parts must be non-empty"
+            )
 
         return [
             {"role": "system", "content": system_text},
@@ -113,10 +119,14 @@ class LLMPromptService:
                 raise LLMSchemaValidationError("Schema list must not be empty")
             item = payload[0]
             if not isinstance(item, dict):
-                raise LLMSchemaValidationError("Schema list first item must be an object")
+                raise LLMSchemaValidationError(
+                    "Schema list first item must be an object"
+                )
             return cast(dict[str, Any], item)
         if not isinstance(payload, dict):
-            raise LLMSchemaValidationError("Schema file must contain a JSON object or list")
+            raise LLMSchemaValidationError(
+                "Schema file must contain a JSON object or list"
+            )
         return cast(dict[str, Any], payload)
 
     @staticmethod
@@ -140,7 +150,9 @@ class LLMPromptService:
     @staticmethod
     def validate_schema(data: dict[str, Any], schema: dict[str, Any]) -> None:
         validator = Draft202012Validator(schema=schema)
-        errors: list[ValidationError] = sorted(validator.iter_errors(data), key=lambda e: e.path)
+        errors: list[ValidationError] = sorted(
+            validator.iter_errors(data), key=lambda e: e.path
+        )
         if errors:
             first = errors[0]
             raise LLMSchemaValidationError(first.message)
