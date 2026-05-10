@@ -423,15 +423,15 @@
     - [BLOCK 4] 该段围绕“本项目采用"敏捷 Vibe Coding（Agile Vibe Coding）"模式”展开（Content Block），承载一组相关实现或说明。
     - [BLOCK 5] 该段定义“2. 规范文件（单一事实来源）”主题（Topic），用于组织本文件的核心语义边界。
     - [BLOCK 6] 该段围绕“编写任何代码前，必须严格读取并遵守：”展开（Content Block），承载一组相关实现或说明。
-    - [BLOCK +] 已合并/省略 73 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+    - [BLOCK +] 已合并/省略 84 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
   - [FILE] `BACKLOG.md`：说明文档（Documentation File），用于沉淀规则、设计与执行说明。
     - [BLOCK 1] 该段定义“需求池（Backlog）”主题（Topic），用于组织本文件的核心语义边界。
     - [BLOCK 2] 该段围绕“> 日常开发禁读此文件。由 PM 角色维护。”展开（Content Block），承载一组相关实现或说明。
     - [BLOCK 3] 该段定义“P0（必须做）”主题（Topic），用于组织本文件的核心语义边界。
-    - [BLOCK 4] 该段围绕“<!-- 示例：”展开（Content Block），承载一组相关实现或说明。
+    - [BLOCK 4] 该段围绕“<!-- 推荐条目模板（复制使用）：”展开（Content Block），承载一组相关实现或说明。
     - [BLOCK 5] 该段定义“P1（应该做）”主题（Topic），用于组织本文件的核心语义边界。
-    - [BLOCK 6] 该段围绕“<!-- 示例：”展开（Content Block），承载一组相关实现或说明。
-    - [BLOCK +] 已合并/省略 3 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+    - [BLOCK 6] 该段围绕“- [ ] story_id: US-20260510-03”展开（Content Block），承载一组相关实现或说明。
+    - [BLOCK +] 已合并/省略 5 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
   - [FILE] `CHANGELOG.md`：说明文档（Documentation File），用于沉淀规则、设计与执行说明。
     - [BLOCK 1] 该段定义“Changelog”主题（Topic），用于组织本文件的核心语义边界。
     - [BLOCK 2] 该段围绕“> 已完成任务的归档记录。禁止修改历史记录。”展开（Content Block），承载一组相关实现或说明。
@@ -458,7 +458,7 @@
     - [BLOCK 4] 该段围绕“**目标：** 完成 backend/ 和 frontend/ 的基础脚手架，使项目”展开（Content Block），承载一组相关实现或说明。
     - [BLOCK 5] 该段定义“Sprint N — <主题>”主题（Topic），用于组织本文件的核心语义边界。
     - [BLOCK 6] 该段围绕“**目标：** <本次冲刺要达成的核心目标>”展开（Content Block），承载一组相关实现或说明。
-    - [BLOCK +] 已合并/省略 12 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+    - [BLOCK +] 已合并/省略 19 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
   - [FILE] `docker-compose.yml`：YAML 配置（YAML Config），用于容器编排或 CI 流程定义。
     - [BLOCK 1] 该段定义服务编排（Service Compose）配置，描述组件关系与运行参数。
     - [BLOCK 2] 该段围绕“backend:”展开（Content Block），承载一组相关实现或说明。

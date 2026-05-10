@@ -31,6 +31,8 @@
 | Skill | 路径 | 用途 |
 |---|---|---|
 | `/setup` | `.agents/skills/setup/SKILL.md` | 默认执行“项目名注入→预检→最小补齐→验证”的幂等化初始化 |
+| `/pm-plan` | `.agents/skills/pm-plan/SKILL.md` | 按需执行需求规划（用户故事草拟→关键分叉确认→写入 `BACKLOG.md`） |
+| `/sprint-plan` | `.agents/skills/sprint-plan/SKILL.md` | 默认执行冲刺规划（从 `BACKLOG.md` 挑选 Ready 条目→写入 `SPRINT.md`→执行 readiness） |
 | `/new-feature` | `.agents/skills/new-feature/SKILL.md` | 垂直切片开发一个新功能（契约→后端→前端→测试） |
 | `/hotfix` | `.agents/skills/hotfix/SKILL.md` | 紧急修复线上 Bug（最小改动→根因定位→回归测试→加速 PR） |
 | `/db-migration` | `.agents/skills/db-migration/SKILL.md` | 创建并验证 Alembic 数据库迁移 |
@@ -57,6 +59,11 @@
 - 根因分析
 
 严禁盲目开启新子代理绕过熔断。
+
+补充：对于 `/sprint-plan` 的准入失败（无 Ready 条目、字段缺失、DoR 不通过），同一问题最多重试 3 次。超过 3 次必须停止并汇报：
+- 完整错误日志
+- 已尝试方案记录
+- 根因分析（Root Cause Analysis）
 
 ### 4.2 状态文件管理（State Management）
 
@@ -86,7 +93,7 @@
 
 ## 5. 标准敏捷 SOP
 
-### 阶段 0：需求规划
+### 阶段 0：需求规划（按需，使用 `/pm-plan`）
 
 收到用户需求后：
 
@@ -95,11 +102,32 @@
 3. **等待确认**，用户只需回答问题或说"都对"
 4. 确认后写入 `BACKLOG.md`
 
-### 阶段 1：冲刺规划
+说明：
+- 阶段 0 不再要求每轮必做；当 `BACKLOG.md` 已有可执行 Ready 条目时，可直接进入阶段 1
+- 若 `BACKLOG.md` 缺少 Ready 条目，或条目缺失用户故事/验收标准，必须先执行 `/pm-plan`
+
+### 阶段 1：冲刺规划（默认入口，使用 `/sprint-plan`）
 
 - 从 `BACKLOG.md` 挑选任务移入 `SPRINT.md`
 - 执行 `/setup` 完成就绪性初始化（项目名注入→预检→最小补齐→验证）
 - 定义 DB Schema 和 API 契约
+
+`/sprint-plan` 强制准入检查（Entry Gate）：
+- `BACKLOG.md` 至少存在一个 Ready 条目
+- 每个拟纳入冲刺条目必须包含：用户故事（User Story）、验收标准（Acceptance Criteria）、优先级（Priority）
+- 任一条件不满足时，立即中止冲刺规划并提示先执行 `/pm-plan`
+
+`/sprint-plan` 必须执行 DoR（Definition of Ready）清单并记录结果：
+- 业务目标清晰（Business Goal Clear）
+- 契约范围明确（Contract Scope Clear）
+- 依赖与风险已记录（Dependencies/Risks Logged）
+- 可测试性明确（Testability Defined）
+
+`/sprint-plan` 写入 `SPRINT.md` 时必须包含：
+- 来源 `BACKLOG.md` 条目 ID
+- 用户故事一句话摘要
+- 验收标准原文或引用
+- 本轮不做项（Out of Scope）
 
 ### 阶段 2：切片开发（使用 `/new-feature`）
 
@@ -185,10 +213,33 @@
 ### 7.6 配置读取显式回执（Config Read Receipt）
 
 执行任意 Skill、引用规约或基于全局规则做出实现决策时，LLM 必须显式输出“本次使用了哪些配置来源”，至少列出：
-- 使用到的 Skill 文件路径
-- 使用到的规范文件路径
-- 使用到的钩子或运行配置文件路径（如存在）
-- 未使用或未找到的关键配置（如有）
+- 使用到的 Skill（必须包含：`Skill 名称 + 使用状态`）
+- 使用到的规约（必须包含：`规约名称 + 使用状态`）
+- 使用到的 Hook 或运行配置（必须包含：`配置名称 + 使用状态`，如存在）
+- 未使用或未找到的关键配置（必须包含：`配置名称 + 未使用/未找到原因`，如有）
+
+强制格式要求：
+- 仅写路径不写名称，视为不合规
+- 名称必须是可识别的具体名词（例如：`/new-feature Skill`、`后端架构法典（BACKEND_SPEC）`、`Codex Hooks`）
+- 使用状态统一为：`used` | `not_used` | `not_found`
+- 本回执为 Name-only 格式，不要求也不建议输出路径
+
+推荐输出模板：
+
+```text
+本次使用的配置来源（Config Read Receipt）：
+1) Skills
+- Name: <Skill 名称> | Status: used|not_used|not_found | Notes: <可选说明>
+
+2) Specs/Policies
+- Name: <规约名称> | Status: used|not_used|not_found | Notes: <可选说明>
+
+3) Hooks/Runtime Config
+- Name: <Hook/配置名称> | Status: used|not_used|not_found | Notes: <可选说明>
+
+4) Missing/Not Used Critical Configs
+- Name: <关键配置名称> | Status: not_used|not_found | Reason: <原因>
+```
 
 ---
 
