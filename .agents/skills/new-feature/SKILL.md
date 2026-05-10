@@ -17,8 +17,9 @@ description: 垂直切片开发一个新功能（契约先行 → 后端 → 前
 ## 前置条件
 
 1. 读取 `SPRINT.md`，确认该功能在当前 Sprint 范围内
-2. 读取 `docs/BACKEND_SPEC.md` 和 `docs/FRONTEND_SPEC.md`
-3. 确认 `backend/` 和 `frontend/` 目录已存在（否则先执行 `/setup`）
+2. 读取 `SYSTEM_DESIGN.md`（若存在），确认与全局约束一致
+3. 读取 `docs/BACKEND_SPEC.md` 和 `docs/FRONTEND_SPEC.md`
+4. 确认 `backend/` 和 `frontend/` 目录已存在（否则先执行 `/setup`）
 
 ---
 

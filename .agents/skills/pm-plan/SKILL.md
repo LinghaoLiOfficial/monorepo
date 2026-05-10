@@ -37,6 +37,7 @@ description: 按需执行需求规划（用户故事草拟 → 关键分叉确�
 - `AGENTS.md`
 - `SPRINT.md`
 - `BACKLOG.md`
+- `SYSTEM_DESIGN.md`（若存在）
 - `.agents/skills/pm-plan/SKILL.md`
 
 若需要评估技术影响，再补充读取：

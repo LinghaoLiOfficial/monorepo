@@ -423,7 +423,7 @@
     - [BLOCK 4] 该段围绕“本项目采用"敏捷 Vibe Coding（Agile Vibe Coding）"模式”展开（Content Block），承载一组相关实现或说明。
     - [BLOCK 5] 该段定义“2. 规范文件（单一事实来源）”主题（Topic），用于组织本文件的核心语义边界。
     - [BLOCK 6] 该段围绕“编写任何代码前，必须严格读取并遵守：”展开（Content Block），承载一组相关实现或说明。
-    - [BLOCK +] 已合并/省略 84 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+    - [BLOCK +] 已合并/省略 93 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
   - [FILE] `BACKLOG.md`：说明文档（Documentation File），用于沉淀规则、设计与执行说明。
     - [BLOCK 1] 该段定义“需求池（Backlog）”主题（Topic），用于组织本文件的核心语义边界。
     - [BLOCK 2] 该段围绕“> 日常开发禁读此文件。由 PM 角色维护。”展开（Content Block），承载一组相关实现或说明。

@@ -28,6 +28,7 @@ description: 默认执行“项目名注入→预检→最小补齐→验证”�
 执行 `/setup` 前必须读取：
 
 - `AGENTS.md`
+- `SYSTEM_DESIGN.md`（若存在）
 - `docs/BACKEND_SPEC.md`
 - `docs/FRONTEND_SPEC.md`
 - `.agents/skills/setup/SKILL.md`

@@ -33,6 +33,7 @@ description: 默认执行冲刺规划（从 BACKLOG 挑选 Ready 条目 → 写�
 - `AGENTS.md`
 - `BACKLOG.md`
 - `SPRINT.md`
+- `SYSTEM_DESIGN.md`（若存在）
 - `.agents/skills/sprint-plan/SKILL.md`
 
 按需补充读取：

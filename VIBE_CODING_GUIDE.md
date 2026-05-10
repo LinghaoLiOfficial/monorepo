@@ -323,13 +323,14 @@ LLM assistant 会相应调整，但会提示你这偏离了 BACKEND_SPEC 的默�
 ```
 # 第一次打开项目
 1. /setup（执行项目名注入与就绪性检查）
-2. /pm-plan <项目背景和核心功能>（按需：仅在 BACKLOG 缺少 Ready 条目或条目不完整时）
-3. /sprint-plan（若 BACKLOG 已有 Ready 条目可直接执行）
-4. /new-feature 用户注册与登录
-5. /test（验证通过后继续）
-6. /new-feature 核心业务功能 A
-7. /test
-8. /pr-review
+2. /global-plan <系统目标与架构边界>（按需：系统级规划，必须在 /setup 之后）
+3. /pm-plan <项目背景和核心功能>（按需：仅在 BACKLOG 缺少 Ready 条目或条目不完整时）
+4. /sprint-plan（若 BACKLOG 已有 Ready 条目可直接执行）
+5. /new-feature 用户注册与登录
+6. /test（验证通过后继续）
+7. /new-feature 核心业务功能 A
+8. /test
+9. /pr-review
 ```
 
 ### 场景 B：在已有项目上加新功能

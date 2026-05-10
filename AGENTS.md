@@ -31,6 +31,7 @@
 | Skill | 路径 | 用途 |
 |---|---|---|
 | `/setup` | `.agents/skills/setup/SKILL.md` | 默认执行“项目名注入→预检→最小补齐→验证”的幂等化初始化 |
+| `/global-plan` | `.agents/skills/global-plan/SKILL.md` | 执行全局需求规划（系统设计意图采集→关键架构分叉确认→写入 `SYSTEM_DESIGN.md`） |
 | `/pm-plan` | `.agents/skills/pm-plan/SKILL.md` | 按需执行需求规划（用户故事草拟→关键分叉确认→写入 `BACKLOG.md`） |
 | `/sprint-plan` | `.agents/skills/sprint-plan/SKILL.md` | 默认执行冲刺规划（从 `BACKLOG.md` 挑选 Ready 条目→写入 `SPRINT.md`→执行 readiness） |
 | `/new-feature` | `.agents/skills/new-feature/SKILL.md` | 垂直切片开发一个新功能（契约→后端→前端→测试） |
@@ -42,6 +43,8 @@
 | `/test` | `.agents/skills/test/SKILL.md` | 执行后端、前端、集成全套测试验证 |
 
 执行任意 Skill 前，必须先读取对应 SKILL.md。
+
+当需求涉及系统级目标、架构边界、跨模块约束或重大技术分叉（如多租户、鉴权模型、数据隔离、外部集成策略）时，LLM 可像 `/db-migration` 一样按需自主调用 `/global-plan`，无需用户每次显式下达斜杠命令。
 
 当需求涉及对象存储（Object Storage）时，LLM 可像 `/db-migration` 一样按需自主调用 `/oss-storage`，无需用户每次显式下达斜杠命令。
 
@@ -93,7 +96,32 @@
 
 ## 5. 标准敏捷 SOP
 
-### 阶段 0：需求规划（按需，使用 `/pm-plan`）
+### 阶段 0：环境初始化（默认，使用 `/setup`）
+
+收到需求后，先完成仓库就绪性初始化：
+
+1. 执行 `/setup`（项目名注入→预检→最小补齐→验证）
+2. 确认环境变量模板检查通过
+3. 确认基础服务具备可运行条件
+
+说明：
+- `/setup` 是后续规划与开发的前置步骤
+- 未完成 `/setup` 时，不得执行 `/global-plan`
+
+### 阶段 0.5：全局规划（按需，使用 `/global-plan`）
+
+收到新项目或重大方向变更需求后：
+
+1. **采集**：采集系统目标、边界、关键约束与非功能性要求（NFR）
+2. **确认**：针对 2-3 个关键架构分叉点提问（租户隔离、鉴权权限、外部集成/存储）
+3. **等待确认**，用户只需回答问题或说"都对"
+4. 确认后写入 `SYSTEM_DESIGN.md`
+
+说明：
+- 阶段 0.5 不要求每轮必做；当 `SYSTEM_DESIGN.md` 无全局变更时可跳过
+- 若需求涉及系统级分叉或架构方向调整，必须在 `/setup` 完成后执行 `/global-plan`
+
+### 阶段 1：需求规划（按需，使用 `/pm-plan`）
 
 收到用户需求后：
 
@@ -103,13 +131,13 @@
 4. 确认后写入 `BACKLOG.md`
 
 说明：
-- 阶段 0 不再要求每轮必做；当 `BACKLOG.md` 已有可执行 Ready 条目时，可直接进入阶段 1
+- 阶段 1 不再要求每轮必做；当 `BACKLOG.md` 已有可执行 Ready 条目时，可直接进入阶段 2
 - 若 `BACKLOG.md` 缺少 Ready 条目，或条目缺失用户故事/验收标准，必须先执行 `/pm-plan`
 
-### 阶段 1：冲刺规划（默认入口，使用 `/sprint-plan`）
+### 阶段 2：冲刺规划（默认入口，使用 `/sprint-plan`）
 
 - 从 `BACKLOG.md` 挑选任务移入 `SPRINT.md`
-- 执行 `/setup` 完成就绪性初始化（项目名注入→预检→最小补齐→验证）
+- 确认 `/setup` 已完成（若未完成，先回退执行 `/setup`）
 - 定义 DB Schema 和 API 契约
 
 `/sprint-plan` 强制准入检查（Entry Gate）：
@@ -129,15 +157,15 @@
 - 验收标准原文或引用
 - 本轮不做项（Out of Scope）
 
-### 阶段 2：切片开发（使用 `/new-feature`）
+### 阶段 3：切片开发（使用 `/new-feature`）
 
 1. 后端：Schema → Domain → Application → Infrastructure → API Router
 2. 前端：类型定义 → Server Component → Client Component → 表单/交互
 3. 执行 `git commit`（遵循 Conventional Commits）
 
-### 阶段 3：测试排错（使用 `/test`）
+### 阶段 4：测试排错（使用 `/test`）
 
-### 阶段 4：部署回顾
+### 阶段 5：部署回顾
 
 - 清理 `SPRINT.md` 已完成任务，追加到 `CHANGELOG.md`
 - 使用 `/pr-review` 创建 PR
