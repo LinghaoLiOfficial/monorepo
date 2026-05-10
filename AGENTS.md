@@ -35,12 +35,15 @@
 | `/hotfix` | `.agents/skills/hotfix/SKILL.md` | 紧急修复线上 Bug（最小改动→根因定位→回归测试→加速 PR） |
 | `/db-migration` | `.agents/skills/db-migration/SKILL.md` | 创建并验证 Alembic 数据库迁移 |
 | `/oss-storage` | `.agents/skills/oss-storage/SKILL.md` | 可选对象存储能力接入与验证（阿里云 OSS，按需启用） |
+| `/llm-api` | `.agents/skills/llm-api/SKILL.md` | 大模型 API 模板化调用与结构化输出校验（Template + Schema） |
 | `/pr-review` | `.agents/skills/pr-review/SKILL.md` | 创建 PR 并执行代码审查清单 |
 | `/test` | `.agents/skills/test/SKILL.md` | 执行后端、前端、集成全套测试验证 |
 
 执行任意 Skill 前，必须先读取对应 SKILL.md。
 
 当需求涉及对象存储（Object Storage）时，LLM 可像 `/db-migration` 一样按需自主调用 `/oss-storage`，无需用户每次显式下达斜杠命令。
+
+当需求涉及提示词模板（Prompt Template）、结构化输出（Structured Output）或 Schema 校验时，LLM 可像 `/db-migration` 一样按需自主调用 `/llm-api`，无需用户每次显式下达斜杠命令。
 
 ---
 

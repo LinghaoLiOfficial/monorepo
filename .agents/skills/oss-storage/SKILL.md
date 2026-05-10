@@ -96,6 +96,17 @@ uv run pytest tests/unit/test_aliyun_oss_storage.py -v
 
 ---
 
+## 自主调用策略（Auto Invocation）
+
+当需求出现以下语义时，LLM 可自主调用 `/oss-storage`，无需用户显式输入：
+
+- “文件上传/下载（file upload/download）”
+- “对象存储（object storage）”
+- “媒体资源持久化（media persistence）”
+- “大文件流式读取（streaming read）”
+
+---
+
 ## 新项目复用步骤
 
 1. 复制下列文件到新项目同等层级：
