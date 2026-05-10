@@ -34,10 +34,13 @@
 | `/new-feature` | `.agents/skills/new-feature/SKILL.md` | 垂直切片开发一个新功能（契约→后端→前端→测试） |
 | `/hotfix` | `.agents/skills/hotfix/SKILL.md` | 紧急修复线上 Bug（最小改动→根因定位→回归测试→加速 PR） |
 | `/db-migration` | `.agents/skills/db-migration/SKILL.md` | 创建并验证 Alembic 数据库迁移 |
+| `/oss-storage` | `.agents/skills/oss-storage/SKILL.md` | 可选对象存储能力接入与验证（阿里云 OSS，按需启用） |
 | `/pr-review` | `.agents/skills/pr-review/SKILL.md` | 创建 PR 并执行代码审查清单 |
 | `/test` | `.agents/skills/test/SKILL.md` | 执行后端、前端、集成全套测试验证 |
 
 执行任意 Skill 前，必须先读取对应 SKILL.md。
+
+当需求涉及对象存储（Object Storage）时，LLM 可像 `/db-migration` 一样按需自主调用 `/oss-storage`，无需用户每次显式下达斜杠命令。
 
 ---
 
@@ -189,6 +192,7 @@
 ## 8. 安全与敏感数据规则
 
 - `.env` 禁止提交，只提交 `.env.example`
+- 环境变量分工：`.env.example` 仅作模板（可提交）；`.env` 才是本地/部署环境实际填写文件（不可提交）
 - 日志、错误响应禁止包含：密码、token、cookie、完整身份证件
 - 文件内容禁止存入 PostgreSQL（用阿里云 OSS）
 - JWT/Session token 禁止存入 localStorage 或 Zustand persist

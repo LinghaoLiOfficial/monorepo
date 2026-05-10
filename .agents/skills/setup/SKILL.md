@@ -35,6 +35,12 @@ description: 默认执行“项目名注入→预检→最小补齐→验证”�
 
 并在输出中给出配置读取回执（Config Read Receipt）。
 
+### 环境变量文件分工（必须遵守）
+
+- `.env.example`：模板文件（Template），用于声明变量清单与示例值，可提交到 Git。
+- `.env`：实际运行配置（Runtime Config），用于填写真实密钥与密码，不可提交到 Git。
+- 开发者与部署环境应填写 `.env`；仅在新增变量时同步更新 `.env.example`。
+
 ---
 
 ## 阶段 0：项目名注入（Project Name Injection）

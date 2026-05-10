@@ -18,5 +18,17 @@ class Settings(BaseSettings):
     )
     cors_origins: list[str] = ["http://localhost:3000"]
 
+    # Optional object storage (Aliyun OSS)
+    oss_enabled: bool = False
+    oss_access_key_id: str = ""
+    oss_access_key_secret: str = ""
+    oss_bucket: str = ""
+    oss_region: str = ""
+    oss_endpoint: str = ""
+    oss_max_connections: int = 20
+    oss_disable_ssl: bool = False
+    oss_use_cname: bool = True
+    oss_load_max_size: int = 50 * 1024 * 1024
+
 
 settings = Settings()
