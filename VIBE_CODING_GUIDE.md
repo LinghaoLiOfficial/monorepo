@@ -65,17 +65,30 @@ LLM assistant 会将需求拆解为用户故事，确认后自动写入需求池
 
 ## 三、日常开发流程
 
-### 3.1 规划需求（PM 角色）
+### 3.1 规划需求（PM 角色，按需使用 `/pm-plan`）
 
-直接告诉 LLM assistant 你的需求，不需要精心构思：
+`/pm-plan` 是按需（on-demand）步骤，不是每轮必做。以下场景才需要执行：
+- `BACKLOG.md` 缺少 Ready 条目
+- 条目缺少用户故事（User Story）或验收标准（Acceptance Criteria）
+- 新需求尚未结构化澄清
+
+满足上述任一条件时，使用 `/pm-plan` 进入需求规划流程：
+
+```
+/pm-plan 我要做一个电商平台。
+```
+
+你也可以先自然语言描述需求，LLM assistant 会提示并切换到 `/pm-plan` 流程。
+
+在 `/pm-plan` 中，LLM assistant 会先推断出完整的功能模块草稿，然后针对 2-3 个关键细节向你确认：
 
 ```
 我要做一个电商平台。
 ```
 
-LLM assistant 会先推断出完整的功能模块草稿，然后针对 2-3 个关键细节向你确认：
+`/pm-plan` 典型输出示例：
 
-```
+```text
 根据你的描述，我推断这个平台包含：
 - [P0] 用户注册与登录
 - [P0] 商品浏览与搜索
@@ -90,23 +103,29 @@ LLM assistant 会先推断出完整的功能模块草稿，然后针对 2-3 个�
 3. 商品是单一规格还是支持多规格（颜色、尺码）？
 ```
 
-你只需要回答问题，或者说"都对"，LLM assistant 会自动整理并归档需求。
+你只需要回答问题，或者说"都对"，`/pm-plan` 会自动整理并写入 `BACKLOG.md`（状态为 Draft/Ready）。
 
-### 3.2 冲刺规划
+### 3.2 冲刺规划（默认入口，显式使用 `/sprint-plan`）
 
-告诉 LLM assistant 本轮想做哪些功能：
+当 `BACKLOG.md` 已有可执行 Ready 条目时，可直接使用 `/sprint-plan` 进入冲刺规划：
 
 ```
-本轮先做用户注册和登录。
+/sprint-plan
+```
+
+或者指定本轮重点：
+
+```
+/sprint-plan 本轮先做用户注册和登录。
 ```
 
 或者让 LLM assistant 根据优先级自动建议：
 
 ```
-请帮我进行本次规划。
+/sprint-plan 请根据优先级帮我进行本次规划。
 ```
 
-LLM assistant 会从 BACKLOG 中挑选合适的任务，确认范围后自动更新 SPRINT.md。
+`/sprint-plan` 会从 `BACKLOG.md` 挑选 Ready 条目，执行 Entry Gate + DoR 检查，确认范围后自动更新 `SPRINT.md`。
 
 ### 3.3 开发新功能（核心流程）
 
@@ -304,8 +323,8 @@ LLM assistant 会相应调整，但会提示你这偏离了 BACKEND_SPEC 的默�
 ```
 # 第一次打开项目
 1. /setup（执行项目名注入与就绪性检查）
-2. 描述项目背景和核心功能，LLM assistant 自动整理需求
-3. 告诉 LLM assistant 本轮要做哪些功能
+2. /pm-plan <项目背景和核心功能>（按需：仅在 BACKLOG 缺少 Ready 条目或条目不完整时）
+3. /sprint-plan（若 BACKLOG 已有 Ready 条目可直接执行）
 4. /new-feature 用户注册与登录
 5. /test（验证通过后继续）
 6. /new-feature 核心业务功能 A
@@ -318,8 +337,8 @@ LLM assistant 会相应调整，但会提示你这偏离了 BACKEND_SPEC 的默�
 ```
 # 已有 backend/ 和 frontend/
 1. 告诉 LLM assistant 继续上次的开发，确认当前进度
-2. 描述新需求，LLM assistant 自动整理并归档
-3. 告诉 LLM assistant 本轮要做哪个功能
+2. /pm-plan <新需求描述>（按需：若 BACKLOG 已有可执行 Ready 条目可跳过）
+3. /sprint-plan（纳入本轮范围）
 4. /new-feature <新功能>
 5. /test
 6. /pr-review

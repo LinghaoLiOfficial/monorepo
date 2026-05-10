@@ -117,7 +117,8 @@ monorepo/
 ### 3) 工作流技能层（Skills）
 
 - 目录：`.agents/skills/*/SKILL.md`
-- 已内置技能：`/setup`、`/new-feature`、`/hotfix`、`/db-migration`、`/test`、`/pr-review`
+- 已内置技能：`/setup`、`/pm-plan`、`/sprint-plan`、`/new-feature`、`/hotfix`、`/db-migration`、`/test`、`/pr-review`
+- 规划节奏：`/pm-plan` 为按需步骤（仅在 BACKLOG 缺少 Ready 条目或条目不完整时使用）；`/sprint-plan` 为默认入口（有 Ready 条目即可进入冲刺规划）
 - 作用：把复杂任务拆成可重复执行的 SOP（如“新功能垂直切片开发”“紧急修复”“PR 质检”）。
 - 你可以把它理解为：把“怎么做”沉淀成标准动作，减少临场发挥。
 
