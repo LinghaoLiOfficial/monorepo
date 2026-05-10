@@ -3,6 +3,15 @@
 一个面向 AI 协作开发的全栈 Monorepo 模板，技术栈为 **FastAPI + Next.js**。
 目标是让你基于已预置的前后端基线快速进入业务开发，并通过标准化工作流持续交付。
 
+## 工程脚手架与运行时基座
+
+本模板可视为一套开箱可用的**工程脚手架与运行时基座（project scaffold + runtime baseline）**，核心覆盖四个层面：
+
+- **工程结构与约定（project structure & conventions）**：统一目录分层、命名规范与边界职责，降低协作摩擦并提升可维护性。
+- **环境编排与配置（environment orchestration & configuration）**：提供一致的本地开发与服务编排方式，减少环境漂移（environment drift）带来的问题。
+- **前后端可运行骨架（runnable full-stack skeleton）**：内置可直接启动的 FastAPI + Next.js 基础能力，帮助团队从“能跑”快速进入“可迭代”。
+- **团队流程资产（workflow assets）**：沉淀规范、脚本与 SOP（standard operating procedure），将需求拆解、开发、测试与交付流程标准化。
+
 ## 这是什么
 
 - 适用于前后端分离的 SaaS / 管理后台 / API 服务项目

@@ -446,11 +446,11 @@
   - [FILE] `README.md`：项目入口文档（Entry Doc），说明目标、结构、启动方式与贡献流程。
     - [BLOCK 1] 该段定义“monorepo”主题（Topic），用于组织本文件的核心语义边界。
     - [BLOCK 2] 该段围绕“一个面向 AI 协作开发的全栈 Monorepo 模板，技术栈为 **FastAPI”展开（Content Block），承载一组相关实现或说明。
-    - [BLOCK 3] 该段定义“这是什么”主题（Topic），用于组织本文件的核心语义边界。
-    - [BLOCK 4] 该段围绕“- 适用于前后端分离的 SaaS / 管理后台 / API 服务项目”展开（Content Block），承载一组相关实现或说明。
-    - [BLOCK 5] 该段定义“适合谁”主题（Topic），用于组织本文件的核心语义边界。
-    - [BLOCK 6] 该段围绕“- 想快速启动企业级全栈项目的个人或小团队”展开（Content Block），承载一组相关实现或说明。
-    - [BLOCK +] 已合并/省略 36 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+    - [BLOCK 3] 该段定义“工程脚手架与运行时基座”主题（Topic），用于组织本文件的核心语义边界。
+    - [BLOCK 4] 该段围绕“本模板可视为一套开箱可用的**工程脚手架与运行时基座（project scaffol”展开（Content Block），承载一组相关实现或说明。
+    - [BLOCK 5] 该段定义“这是什么”主题（Topic），用于组织本文件的核心语义边界。
+    - [BLOCK 6] 该段围绕“- 适用于前后端分离的 SaaS / 管理后台 / API 服务项目”展开（Content Block），承载一组相关实现或说明。
+    - [BLOCK +] 已合并/省略 39 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
   - [FILE] `SPRINT.md`：说明文档（Documentation File），用于沉淀规则、设计与执行说明。
     - [BLOCK 1] 该段定义“当前冲刺（Sprint）”主题（Topic），用于组织本文件的核心语义边界。
     - [BLOCK 2] 该段围绕“> 修改代码前后必读此文件。记录正在执行的任务。”展开（Content Block），承载一组相关实现或说明。
