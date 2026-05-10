@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Any
 
 import pytest
 
@@ -37,16 +38,16 @@ class _FakeClient:
     def __init__(self, data: bytes = b"hello") -> None:
         self.data = data
 
-    def put_object(self, _req) -> None:
+    def put_object(self, _req: Any) -> None:
         return None
 
-    def get_object(self, _req):
+    def get_object(self, _req: Any) -> _FakeResponse:
         return _FakeResponse(self.data)
 
-    def delete_object(self, _req) -> None:
+    def delete_object(self, _req: Any) -> None:
         return None
 
-    def is_object_exist(self, **_kwargs) -> bool:
+    def is_object_exist(self, **_kwargs: Any) -> bool:
         return True
 
 

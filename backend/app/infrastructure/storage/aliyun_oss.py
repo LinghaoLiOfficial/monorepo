@@ -2,10 +2,10 @@ from __future__ import annotations
 
 import asyncio
 import mimetypes
-from collections.abc import AsyncIterator, Generator
+from collections.abc import AsyncIterator, Callable, Generator
 from functools import lru_cache
 from pathlib import Path
-from typing import BinaryIO, cast
+from typing import Any, BinaryIO, ParamSpec, TypeVar, cast
 
 import alibabacloud_oss_v2 as oss
 import structlog
@@ -14,6 +14,9 @@ from app.application.ports.external_clients import ObjectStorageClient
 from app.core.config import settings
 
 logger = structlog.get_logger(__name__)
+
+P = ParamSpec("P")
+T = TypeVar("T")
 
 
 class ObjectStorageError(Exception):
@@ -83,7 +86,11 @@ class AliyunOssStorage(ObjectStorageClient):
         file_data: bytes,
         content_type: str | None = None,
     ) -> None:
-        await self.save_stream(file_path=file_path, file_data=file_data, content_type=content_type)
+        await self.save_stream(
+            file_path=file_path,
+            file_data=file_data,
+            content_type=content_type,
+        )
 
     async def save_stream(
         self,
@@ -91,7 +98,11 @@ class AliyunOssStorage(ObjectStorageClient):
         file_data: bytes | BinaryIO,
         content_type: str | None = None,
     ) -> None:
-        resolved_type = content_type or mimetypes.guess_type(str(file_path))[0] or "application/octet-stream"
+        resolved_type = (
+            content_type
+            or mimetypes.guess_type(str(file_path))[0]
+            or "application/octet-stream"
+        )
 
         req = oss.PutObjectRequest(
             bucket=self._bucket,
@@ -103,7 +114,7 @@ class AliyunOssStorage(ObjectStorageClient):
         logger.info("oss_upload_succeeded", key=str(file_path), content_type=resolved_type)
 
     async def load(self, file_path: Path) -> tuple[bytes, str]:
-        result = await self._run_sync(
+        result: Any = await self._run_sync(
             self._client.get_object,
             oss.GetObjectRequest(bucket=self._bucket, key=str(file_path)),
         )
@@ -127,7 +138,7 @@ class AliyunOssStorage(ObjectStorageClient):
         file_path: Path,
         chunk_size: int = 1024 * 1024,
     ) -> tuple[AsyncIterator[bytes], str]:
-        result = await self._run_sync(
+        result: Any = await self._run_sync(
             self._client.get_object,
             oss.GetObjectRequest(bucket=self._bucket, key=str(file_path)),
         )
@@ -159,11 +170,12 @@ class AliyunOssStorage(ObjectStorageClient):
         logger.info("oss_delete_succeeded", key=str(file_path))
 
     async def exists(self, file_path: Path) -> bool:
-        return await self._run_sync(
+        result = await self._run_sync(
             self._client.is_object_exist,
             bucket=self._bucket,
             key=str(file_path),
         )
+        return bool(result)
 
     async def list_files(self, prefix: Path) -> list[str]:
         paginator = self._client.list_objects_v2_paginator()
@@ -179,7 +191,7 @@ class AliyunOssStorage(ObjectStorageClient):
 
         return await asyncio.to_thread(collect)
 
-    async def _run_sync(self, fn, *args, **kwargs):
+    async def _run_sync(self, fn: Callable[P, T], *args: P.args, **kwargs: P.kwargs) -> T:
         try:
             return await asyncio.to_thread(fn, *args, **kwargs)
         except Exception as exc:  # pragma: no cover - defensive wrapper

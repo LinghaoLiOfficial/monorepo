@@ -9,6 +9,7 @@ from app.main import app
 @pytest.fixture
 async def client() -> AsyncGenerator[AsyncClient, None]:
     async with AsyncClient(
-        transport=ASGITransport(app=app), base_url="http://test"
+        transport=ASGITransport(app=app, raise_app_exceptions=False),
+        base_url="http://test",
     ) as ac:
         yield ac

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Any
+
 from openai import AsyncOpenAI
 
 from app.application.dto.llm import LLMTextResponse
@@ -18,7 +20,7 @@ class OpenAICompatibleLLMClient(LLMClientPort):
         response_format: dict[str, str] | None = None,
         timeout_seconds: float | None = None,
     ) -> LLMTextResponse:
-        kwargs: dict = {
+        kwargs: dict[str, Any] = {
             "model": model,
             "messages": messages,
         }

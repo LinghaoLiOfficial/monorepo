@@ -1,3 +1,4 @@
+from collections.abc import AsyncIterator
 from pathlib import Path
 
 import pytest
@@ -26,7 +27,11 @@ class _FakeStorageClient:
         file_data, content_type = self.saved[str(file_path)]
         return file_data, content_type or "application/octet-stream"
 
-    async def load_stream(self, file_path: Path, chunk_size: int = 1024 * 1024):
+    async def load_stream(
+        self,
+        file_path: Path,
+        chunk_size: int = 1024 * 1024,
+    ) -> tuple[AsyncIterator[bytes], str]:
         raise NotImplementedError
 
     async def delete(self, file_path: Path) -> None:

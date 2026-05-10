@@ -4,7 +4,7 @@ import asyncio
 import json
 import re
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 import structlog
 from jinja2 import Template
@@ -111,10 +111,13 @@ class LLMPromptService:
         if isinstance(payload, list):
             if not payload:
                 raise LLMSchemaValidationError("Schema list must not be empty")
-            return payload[0]
+            item = payload[0]
+            if not isinstance(item, dict):
+                raise LLMSchemaValidationError("Schema list first item must be an object")
+            return cast(dict[str, Any], item)
         if not isinstance(payload, dict):
             raise LLMSchemaValidationError("Schema file must contain a JSON object or list")
-        return payload
+        return cast(dict[str, Any], payload)
 
     @staticmethod
     def parse_json_output(raw_text: str) -> dict[str, Any]:
@@ -132,7 +135,7 @@ class LLMPromptService:
         if not isinstance(parsed, dict):
             raise LLMJsonParseError("JSON output must be an object")
 
-        return parsed
+        return cast(dict[str, Any], parsed)
 
     @staticmethod
     def validate_schema(data: dict[str, Any], schema: dict[str, Any]) -> None:

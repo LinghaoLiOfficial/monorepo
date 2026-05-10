@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Any
 
 import pytest
 
@@ -15,7 +16,7 @@ class _FakeLLMClient:
     def __init__(self, content: str) -> None:
         self._content = content
 
-    async def complete_text(self, **_kwargs) -> LLMTextResponse:
+    async def complete_text(self, **_kwargs: Any) -> LLMTextResponse:
         return LLMTextResponse(content=self._content)
 
 
