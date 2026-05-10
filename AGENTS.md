@@ -200,3 +200,23 @@
 - 文件内容禁止存入 PostgreSQL（用阿里云 OSS）
 - JWT/Session token 禁止存入 localStorage 或 Zustand persist
 - 每个 Server Action 必须包含：输入校验 + 身份认证 + 权限校验
+
+---
+
+## 9. 目录树文档动态同步规则（Project Map Dynamic Sync）
+
+### 9.1 目标文件（Single Source）
+
+- 全局目录树文件固定为：`PROJECT_STRUCTURE_WITH_DEFINITIONS.md`
+- 该文件必须由脚本生成，禁止手工直接编辑内容
+
+### 9.2 生成与校验命令（Generate / Check）
+
+- 生成命令：`python3 scripts/generate_project_map.py`
+- 校验命令：`python3 scripts/check_project_map.py`
+
+### 9.3 强制执行时机（Mandatory Timing）
+
+- 任何涉及文件新增、删除、重命名、目录结构变化、文档段落块变化的改动后，LLM 必须在提交前执行一次生成命令
+- 每次回复“修改完成”前，LLM 必须确认目录树文件已同步到最新状态
+- 若校验失败，必须先更新目录树文件，再继续后续流程

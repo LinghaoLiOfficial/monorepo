@@ -1,0 +1,449 @@
+# 项目全局目录树与节点定义（精简版）
+
+> 说明：本文件由 `scripts/generate_project_map.py` 自动生成；采用核心范围（core scope）与去冗余策略，确保可读、可维护、可快速同步。
+
+- [DIR] `.`：项目根目录（Project Root），统一组织前后端代码、规范与工程自动化配置。
+  - [DIR] `.codex`：智能体运行目录（Codex Runtime），定义本地 Hook 与自动化触发规则。
+    - [FILE] `.codex/hooks.json`：工程文件（Project Artifact），用于支撑模块运行、配置或质量保障。
+      - [BLOCK 1] 该段围绕“{”展开（Content Block），承载一组相关实现或说明。
+  - [DIR] `.github`：流水线目录（Workflows），定义 CI 校验任务与触发策略。
+    - [DIR] `.github/workflows`：流水线目录（Workflows），定义 CI 校验任务与触发策略。
+      - [FILE] `.github/workflows/backend-ci.yml`：YAML 配置（YAML Config），用于容器编排或 CI 流程定义。
+        - [BLOCK 1] 该段围绕“name: backend-ci”展开（Content Block），承载一组相关实现或说明。
+        - [BLOCK +] 已合并/省略 2 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+      - [FILE] `.github/workflows/frontend-ci.yml`：YAML 配置（YAML Config），用于容器编排或 CI 流程定义。
+        - [BLOCK 1] 该段围绕“name: frontend-ci”展开（Content Block），承载一组相关实现或说明。
+        - [BLOCK +] 已合并/省略 2 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+  - [DIR] `backend`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+    - [DIR] `backend/alembic`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+      - [DIR] `backend/alembic/versions`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+        - [FILE] `backend/alembic/versions/.gitkeep`：工程文件（Project Artifact），用于支撑模块运行、配置或质量保障。
+          - [BLOCK 1] 该文件为占位文本（Placeholder），当前无可解析内容。
+      - [FILE] `backend/alembic/env.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+        - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+        - [BLOCK 2] 该段围绕“config = context.config”展开（Content Block），承载一组相关实现或说明。
+        - [BLOCK 3] 该段定义函数 `_to_sync_sqlalchemy_url`（Function），封装一个可复用的处理步骤。
+        - [BLOCK 4] 该段定义函数 `_resolve_database_url`（Function），封装一个可复用的处理步骤。
+        - [BLOCK 5] 该段定义函数 `run_migrations_offline`（Function），封装一个可复用的处理步骤。
+        - [BLOCK 6] 该段定义函数 `run_migrations_online`（Function），封装一个可复用的处理步骤。
+        - [BLOCK +] 已合并/省略 5 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+      - [FILE] `backend/alembic/script.py.mako`：工程文件（Project Artifact），用于支撑模块运行、配置或质量保障。
+        - [BLOCK 1] 该段围绕“"""${message}”展开（Content Block），承载一组相关实现或说明。
+        - [BLOCK 2] 该段定义函数 `upgrade`（Function），封装一个可复用的处理步骤。
+        - [BLOCK 3] 该段定义函数 `downgrade`（Function），封装一个可复用的处理步骤。
+        - [BLOCK +] 已合并/省略 2 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+    - [DIR] `backend/app`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+      - [DIR] `backend/app/api`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+        - [DIR] `backend/app/api/v1`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+          - [FILE] `backend/app/api/v1/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该文件为占位文本（Placeholder），当前无可解析内容。
+          - [FILE] `backend/app/api/v1/router.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+            - [BLOCK 2] 该段围绕“router = APIRouter()”展开（Content Block），承载一组相关实现或说明。
+            - [BLOCK +] 已合并/省略 1 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+        - [FILE] `backend/app/api/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+          - [BLOCK 1] 该文件为占位文本（Placeholder），当前无可解析内容。
+        - [FILE] `backend/app/api/deps.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+          - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+          - [BLOCK 2] 该段定义函数 `get_settings`（Function），封装一个可复用的处理步骤。
+      - [DIR] `backend/app/application`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+        - [DIR] `backend/app/application/dto`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+          - [FILE] `backend/app/application/dto/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该文件为占位文本（Placeholder），当前无可解析内容。
+          - [FILE] `backend/app/application/dto/llm.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+            - [BLOCK 2] 该段围绕“@dataclass(slots=True)”展开（Content Block），承载一组相关实现或说明。
+            - [BLOCK +] 已合并/省略 1 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+          - [FILE] `backend/app/application/dto/storage.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+            - [BLOCK 2] 该段围绕“@dataclass(slots=True)”展开（Content Block），承载一组相关实现或说明。
+        - [DIR] `backend/app/application/ports`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+          - [FILE] `backend/app/application/ports/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该文件为占位文本（Placeholder），当前无可解析内容。
+          - [FILE] `backend/app/application/ports/external_clients.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+            - [BLOCK 2] 该段定义类 `ExternalClient`（Class），用于组织状态与相关行为。
+            - [BLOCK 3] 该段定义类 `ObjectStorageClient`（Class），用于组织状态与相关行为。
+            - [BLOCK 4] 该段围绕“async def load(self, file_path: Path) -> t”展开（Content Block），承载一组相关实现或说明。
+            - [BLOCK 5] 该段定义类 `LLMClientPort`（Class），用于组织状态与相关行为。
+            - [BLOCK +] 已合并/省略 5 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+          - [FILE] `backend/app/application/ports/repositories.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+            - [BLOCK 2] 该段定义类 `Repository`（Class），用于组织状态与相关行为。
+        - [DIR] `backend/app/application/services`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+          - [FILE] `backend/app/application/services/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+            - [BLOCK 2] 该段围绕“__all__ = ["LLMPromptService"]”展开（Content Block），承载一组相关实现或说明。
+          - [FILE] `backend/app/application/services/llm_prompt_service.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+            - [BLOCK 2] 该段围绕“logger = structlog.get_logger(__name__)”展开（Content Block），承载一组相关实现或说明。
+            - [BLOCK 3] 该段定义类 `LLMPromptServiceError`（Class），用于组织状态与相关行为。
+            - [BLOCK 4] 该段定义类 `LLMTemplateFormatError`（Class），用于组织状态与相关行为。
+            - [BLOCK 5] 该段定义类 `LLMJsonParseError`（Class），用于组织状态与相关行为。
+            - [BLOCK 6] 该段定义类 `LLMSchemaValidationError`（Class），用于组织状态与相关行为。
+            - [BLOCK +] 已合并/省略 20 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+        - [DIR] `backend/app/application/use_cases`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+          - [FILE] `backend/app/application/use_cases/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+            - [BLOCK 2] 该段围绕“__all__ = [”展开（Content Block），承载一组相关实现或说明。
+          - [FILE] `backend/app/application/use_cases/llm_template_json.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+            - [BLOCK 2] 该段围绕“@dataclass(slots=True)”展开（Content Block），承载一组相关实现或说明。
+            - [BLOCK 3] 该段定义类 `RunLLMTemplateJsonUseCase`（Class），用于组织状态与相关行为。
+            - [BLOCK 4] 该段围绕“async def execute(self, payload: RunLLMTem”展开（Content Block），承载一组相关实现或说明。
+            - [BLOCK +] 已合并/省略 2 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+          - [FILE] `backend/app/application/use_cases/storage_object.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+            - [BLOCK 2] 该段围绕“@dataclass(slots=True)”展开（Content Block），承载一组相关实现或说明。
+            - [BLOCK 3] 该段定义类 `RunSaveObjectUseCase`（Class），用于组织状态与相关行为。
+            - [BLOCK 4] 该段围绕“async def execute(self, payload: RunSaveOb”展开（Content Block），承载一组相关实现或说明。
+            - [BLOCK 5] 该段定义类 `RunLoadObjectUseCase`（Class），用于组织状态与相关行为。
+            - [BLOCK 6] 该段围绕“async def execute(self, payload: RunLoadOb”展开（Content Block），承载一组相关实现或说明。
+            - [BLOCK +] 已合并/省略 3 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+        - [FILE] `backend/app/application/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+          - [BLOCK 1] 该文件为占位文本（Placeholder），当前无可解析内容。
+      - [DIR] `backend/app/core`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+        - [FILE] `backend/app/core/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+          - [BLOCK 1] 该文件为占位文本（Placeholder），当前无可解析内容。
+        - [FILE] `backend/app/core/config.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+          - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+          - [BLOCK 2] 该段定义类 `Settings`（Class），用于组织状态与相关行为。
+          - [BLOCK 3] 该段围绕“app_name: str = "myapp"”展开（Content Block），承载一组相关实现或说明。
+          - [BLOCK 4] 该段定义“Optional object storage (Aliyun OSS)”主题（Topic），用于组织本文件的核心语义边界。
+          - [BLOCK 5] 该段围绕“settings = Settings()”展开（Content Block），承载一组相关实现或说明。
+          - [BLOCK +] 已合并/省略 1 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+        - [FILE] `backend/app/core/error_codes.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+          - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+          - [BLOCK 2] 该段围绕“@dataclass(frozen=True, slots=True)”展开（Content Block），承载一组相关实现或说明。
+          - [BLOCK 3] 该段定义类 `BusinessErrorCode`（Class），用于组织状态与相关行为。
+          - [BLOCK 4] 该段定义类 `TechErrorCode`（Class），用于组织状态与相关行为。
+          - [BLOCK +] 已合并/省略 1 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+        - [FILE] `backend/app/core/exception_handlers.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+          - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+          - [BLOCK 2] 该段围绕“logger = structlog.get_logger(__name__)”展开（Content Block），承载一组相关实现或说明。
+          - [BLOCK 3] 该段定义函数 `_request_id`（Function），封装一个可复用的处理步骤。
+          - [BLOCK 4] 该段定义函数 `_error_payload`（Function），封装一个可复用的处理步骤。
+          - [BLOCK 5] 该段定义函数 `register_exception_handlers`（Function），封装一个可复用的处理步骤。
+          - [BLOCK 6] 该段围绕“@app.exception_handler(RequestValidationEr”展开（Content Block），承载一组相关实现或说明。
+          - [BLOCK +] 已合并/省略 5 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+        - [FILE] `backend/app/core/exceptions.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+          - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+          - [BLOCK 2] 该段定义类 `DomainError`（Class），用于组织状态与相关行为。
+          - [BLOCK 3] 该段定义类 `AppBusinessException`（Class），用于组织状态与相关行为。
+          - [BLOCK 4] 该段定义类 `AppTechException`（Class），用于组织状态与相关行为。
+          - [BLOCK +] 已合并/省略 2 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+        - [FILE] `backend/app/core/logging.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+          - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+          - [BLOCK 2] 该段定义函数 `configure_logging`（Function），封装一个可复用的处理步骤。
+          - [BLOCK +] 已合并/省略 1 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+        - [FILE] `backend/app/core/middleware.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+          - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+          - [BLOCK 2] 该段定义类 `RequestContextMiddleware`（Class），用于组织状态与相关行为。
+          - [BLOCK 3] 该段围绕“response = await call_next(request)”展开（Content Block），承载一组相关实现或说明。
+          - [BLOCK +] 已合并/省略 2 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+        - [FILE] `backend/app/core/observability.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+          - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+          - [BLOCK 2] 该段定义函数 `setup_observability`（Function），封装一个可复用的处理步骤。
+        - [FILE] `backend/app/core/security.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+          - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+          - [BLOCK 2] 该段围绕“password_hasher = PasswordHasher()”展开（Content Block），承载一组相关实现或说明。
+      - [DIR] `backend/app/domain`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+        - [DIR] `backend/app/domain/entities`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+          - [FILE] `backend/app/domain/entities/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该文件为占位文本（Placeholder），当前无可解析内容。
+        - [DIR] `backend/app/domain/enums`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+          - [FILE] `backend/app/domain/enums/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该文件为占位文本（Placeholder），当前无可解析内容。
+        - [DIR] `backend/app/domain/policies`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+          - [FILE] `backend/app/domain/policies/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该文件为占位文本（Placeholder），当前无可解析内容。
+        - [DIR] `backend/app/domain/value_objects`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+          - [FILE] `backend/app/domain/value_objects/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该文件为占位文本（Placeholder），当前无可解析内容。
+        - [FILE] `backend/app/domain/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+          - [BLOCK 1] 该文件为占位文本（Placeholder），当前无可解析内容。
+        - [FILE] `backend/app/domain/errors.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+          - [BLOCK 1] 该段定义类 `BusinessRuleViolation`（Class），用于组织状态与相关行为。
+      - [DIR] `backend/app/infrastructure`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+        - [DIR] `backend/app/infrastructure/cache`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+          - [FILE] `backend/app/infrastructure/cache/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该文件为占位文本（Placeholder），当前无可解析内容。
+        - [DIR] `backend/app/infrastructure/db`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+          - [DIR] `backend/app/infrastructure/db/models`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+            - [FILE] `backend/app/infrastructure/db/models/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+              - [BLOCK 1] 该文件为占位文本（Placeholder），当前无可解析内容。
+          - [DIR] `backend/app/infrastructure/db/repositories`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+            - [FILE] `backend/app/infrastructure/db/repositories/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+              - [BLOCK 1] 该文件为占位文本（Placeholder），当前无可解析内容。
+          - [FILE] `backend/app/infrastructure/db/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该文件为占位文本（Placeholder），当前无可解析内容。
+          - [FILE] `backend/app/infrastructure/db/session.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+            - [BLOCK 2] 该段围绕“engine = create_async_engine(settings.data”展开（Content Block），承载一组相关实现或说明。
+            - [BLOCK +] 已合并/省略 1 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+        - [DIR] `backend/app/infrastructure/email`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+          - [FILE] `backend/app/infrastructure/email/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该文件为占位文本（Placeholder），当前无可解析内容。
+          - [FILE] `backend/app/infrastructure/email/smtp_client.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该段定义类 `SmtpClient`（Class），用于组织状态与相关行为。
+        - [DIR] `backend/app/infrastructure/external`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+          - [FILE] `backend/app/infrastructure/external/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+            - [BLOCK 2] 该段围绕“__all__ = ["OpenAICompatibleLLMClient"]”展开（Content Block），承载一组相关实现或说明。
+          - [FILE] `backend/app/infrastructure/external/openai_compatible_llm.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+            - [BLOCK 2] 该段定义类 `OpenAICompatibleLLMClient`（Class），用于组织状态与相关行为。
+            - [BLOCK 3] 该段围绕“async def complete_text(”展开（Content Block），承载一组相关实现或说明。
+            - [BLOCK +] 已合并/省略 4 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+        - [DIR] `backend/app/infrastructure/queue`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+          - [DIR] `backend/app/infrastructure/queue/tasks`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+            - [FILE] `backend/app/infrastructure/queue/tasks/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+              - [BLOCK 1] 该文件为占位文本（Placeholder），当前无可解析内容。
+          - [FILE] `backend/app/infrastructure/queue/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该文件为占位文本（Placeholder），当前无可解析内容。
+          - [FILE] `backend/app/infrastructure/queue/app.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+            - [BLOCK 2] 该段围绕“app = App(connector=PsycopgConnector(conne”展开（Content Block），承载一组相关实现或说明。
+          - [FILE] `backend/app/infrastructure/queue/worker.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该段定义函数 `main`（Function），封装一个可复用的处理步骤。
+        - [DIR] `backend/app/infrastructure/storage`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+          - [FILE] `backend/app/infrastructure/storage/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+            - [BLOCK 2] 该段围绕“__all__ = [”展开（Content Block），承载一组相关实现或说明。
+          - [FILE] `backend/app/infrastructure/storage/aliyun_oss.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+            - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+            - [BLOCK 2] 该段围绕“logger = structlog.get_logger(__name__)”展开（Content Block），承载一组相关实现或说明。
+            - [BLOCK 3] 该段定义类 `ObjectStorageError`（Class），用于组织状态与相关行为。
+            - [BLOCK 4] 该段定义类 `ObjectTooLargeError`（Class），用于组织状态与相关行为。
+            - [BLOCK 5] 该段定义类 `AliyunOssStorage`（Class），用于组织状态与相关行为。
+            - [BLOCK 6] 该段围绕“@staticmethod”展开（Content Block），承载一组相关实现或说明。
+            - [BLOCK +] 已合并/省略 22 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+        - [FILE] `backend/app/infrastructure/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+          - [BLOCK 1] 该文件为占位文本（Placeholder），当前无可解析内容。
+      - [DIR] `backend/app/schemas`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+        - [FILE] `backend/app/schemas/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+          - [BLOCK 1] 该文件为占位文本（Placeholder），当前无可解析内容。
+        - [FILE] `backend/app/schemas/common.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+          - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+          - [BLOCK 2] 该段定义类 `SuccessResponse`（Class），用于组织状态与相关行为。
+          - [BLOCK +] 已合并/省略 1 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+      - [DIR] `backend/app/utils`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+        - [FILE] `backend/app/utils/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+          - [BLOCK 1] 该文件为占位文本（Placeholder），当前无可解析内容。
+      - [FILE] `backend/app/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+        - [BLOCK 1] 该文件为占位文本（Placeholder），当前无可解析内容。
+      - [FILE] `backend/app/main.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+        - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+        - [BLOCK 2] 该段围绕“configure_logging()”展开（Content Block），承载一组相关实现或说明。
+        - [BLOCK +] 已合并/省略 1 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+    - [DIR] `backend/scripts`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+      - [FILE] `backend/scripts/.gitkeep`：工程文件（Project Artifact），用于支撑模块运行、配置或质量保障。
+        - [BLOCK 1] 该文件为占位文本（Placeholder），当前无可解析内容。
+    - [DIR] `backend/tests`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+      - [DIR] `backend/tests/integration`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+        - [FILE] `backend/tests/integration/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+          - [BLOCK 1] 该文件为占位文本（Placeholder），当前无可解析内容。
+        - [FILE] `backend/tests/integration/test_exception_handlers.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+          - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+          - [BLOCK 2] 该段围绕“router = APIRouter()”展开（Content Block），承载一组相关实现或说明。
+          - [BLOCK +] 已合并/省略 14 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+        - [FILE] `backend/tests/integration/test_health.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+          - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+          - [BLOCK 2] 该段围绕“@pytest.mark.asyncio”展开（Content Block），承载一组相关实现或说明。
+        - [FILE] `backend/tests/integration/test_metrics.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+          - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+          - [BLOCK 2] 该段围绕“@pytest.mark.asyncio”展开（Content Block），承载一组相关实现或说明。
+      - [DIR] `backend/tests/unit`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+        - [DIR] `backend/tests/unit/fixtures`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+          - [DIR] `backend/tests/unit/fixtures/llm`：后端目录（Backend），实现 FastAPI 服务、分层业务能力与测试保障。
+            - [FILE] `backend/tests/unit/fixtures/llm/tech_create_schema.json`：工程文件（Project Artifact），用于支撑模块运行、配置或质量保障。
+              - [BLOCK 1] 该段围绕“{”展开（Content Block），承载一组相关实现或说明。
+            - [FILE] `backend/tests/unit/fixtures/llm/tech_create_template.j2`：工程文件（Project Artifact），用于支撑模块运行、配置或质量保障。
+              - [BLOCK 1] 该段围绕“===SYSTEM===”展开（Content Block），承载一组相关实现或说明。
+              - [BLOCK +] 已合并/省略 1 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+        - [FILE] `backend/tests/unit/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+          - [BLOCK 1] 该文件为占位文本（Placeholder），当前无可解析内容。
+        - [FILE] `backend/tests/unit/test_aliyun_oss_storage.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+          - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+          - [BLOCK 2] 该段定义类 `_FakeBody`（Class），用于组织状态与相关行为。
+          - [BLOCK 3] 该段定义函数 `read`（Function），封装一个可复用的处理步骤。
+          - [BLOCK 4] 该段定义函数 `close`（Function），封装一个可复用的处理步骤。
+          - [BLOCK 5] 该段定义类 `_FakeResponse`（Class），用于组织状态与相关行为。
+          - [BLOCK 6] 该段定义类 `_FakeClient`（Class），用于组织状态与相关行为。
+          - [BLOCK +] 已合并/省略 11 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+        - [FILE] `backend/tests/unit/test_llm_prompt_service.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+          - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+          - [BLOCK 2] 该段定义类 `_FakeLLMClient`（Class），用于组织状态与相关行为。
+          - [BLOCK 3] 该段围绕“async def complete_text(self, **_kwargs: A”展开（Content Block），承载一组相关实现或说明。
+          - [BLOCK 4] 该段定义函数 `_fixture`（Function），封装一个可复用的处理步骤。
+          - [BLOCK 5] 该段定义函数 `test_render_messages_success`（Function），封装一个可复用的处理步骤。
+          - [BLOCK 6] 该段围绕“assert messages[0]["role"] == "system"”展开（Content Block），承载一组相关实现或说明。
+          - [BLOCK +] 已合并/省略 10 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+        - [FILE] `backend/tests/unit/test_llm_template_json_use_case.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+          - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+          - [BLOCK 2] 该段定义类 `_FakeLLMClient`（Class），用于组织状态与相关行为。
+          - [BLOCK 3] 该段围绕“async def complete_text(self, **_kwargs: A”展开（Content Block），承载一组相关实现或说明。
+          - [BLOCK 4] 该段定义函数 `_fixture`（Function），封装一个可复用的处理步骤。
+          - [BLOCK 5] 该段围绕“@pytest.mark.asyncio”展开（Content Block），承载一组相关实现或说明。
+          - [BLOCK +] 已合并/省略 5 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+        - [FILE] `backend/tests/unit/test_storage_object_use_case.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+          - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+          - [BLOCK 2] 该段定义类 `_FakeStorageClient`（Class），用于组织状态与相关行为。
+          - [BLOCK 3] 该段围绕“async def save(”展开（Content Block），承载一组相关实现或说明。
+          - [BLOCK +] 已合并/省略 13 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+      - [FILE] `backend/tests/__init__.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+        - [BLOCK 1] 该文件为占位文本（Placeholder），当前无可解析内容。
+      - [FILE] `backend/tests/conftest.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+        - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+        - [BLOCK 2] 该段围绕“@pytest.fixture”展开（Content Block），承载一组相关实现或说明。
+        - [BLOCK +] 已合并/省略 2 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+    - [FILE] `backend/.env.example`：工程文件（Project Artifact），用于支撑模块运行、配置或质量保障。
+      - [BLOCK 1] 该段围绕“APP_NAME=myapp”展开（Content Block），承载一组相关实现或说明。
+      - [BLOCK 2] 该段定义“Optional object storage (Aliyun OSS)”主题（Topic），用于组织本文件的核心语义边界。
+    - [FILE] `backend/.python-version`：工程文件（Project Artifact），用于支撑模块运行、配置或质量保障。
+      - [BLOCK 1] 该段围绕“3.12”展开（Content Block），承载一组相关实现或说明。
+    - [FILE] `backend/Dockerfile`：工程文件（Project Artifact），用于支撑模块运行、配置或质量保障。
+      - [BLOCK 1] 该段围绕“FROM python:3.12-slim”展开（Content Block），承载一组相关实现或说明。
+    - [FILE] `backend/alembic.ini`：工程文件（Project Artifact），用于支撑模块运行、配置或质量保障。
+      - [BLOCK 1] 该段定义配置节（Config Section），用于组织工具或项目参数。
+      - [BLOCK +] 已合并/省略 8 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+    - [FILE] `backend/pyproject.toml`：TOML 配置（TOML Config），用于依赖与工具链参数管理。
+      - [BLOCK 1] 该段定义配置节（Config Section），用于组织工具或项目参数。
+      - [BLOCK +] 已合并/省略 6 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+    - [FILE] `backend/uv.lock`：锁文件（Lockfile），固定依赖版本以保证环境可复现。
+      - [BLOCK 1] 该段围绕“version = 1”展开（Content Block），承载一组相关实现或说明。
+      - [BLOCK 2] 该段定义配置节（Config Section），用于组织工具或项目参数。
+      - [BLOCK +] 已合并/省略 103 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+  - [DIR] `docs`：规范目录（Docs），定义架构约束、流程规则与团队协作标准。
+    - [FILE] `docs/BACKEND_SPEC.md`：说明文档（Documentation File），用于沉淀规则、设计与执行说明。
+      - [BLOCK 1] 该段定义“后端架构与工程规范法典”主题（Topic），用于组织本文件的核心语义边界。
+      - [BLOCK 2] 该段围绕“> 适用范围：Python + FastAPI 后端服务。”展开（Content Block），承载一组相关实现或说明。
+      - [BLOCK 3] 该段定义“0. 规范关键词”主题（Topic），用于组织本文件的核心语义边界。
+      - [BLOCK 4] 该段围绕“- **MUST**：必须遵守，违反视为架构错误。”展开（Content Block），承载一组相关实现或说明。
+      - [BLOCK 5] 该段定义“1. 确定技术栈基线”主题（Topic），用于组织本文件的核心语义边界。
+      - [BLOCK 6] 该段定义“1.1 运行时、框架与部署”主题（Topic），用于组织本文件的核心语义边界。
+      - [BLOCK +] 已合并/省略 215 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+    - [FILE] `docs/FRONTEND_SPEC.md`：说明文档（Documentation File），用于沉淀规则、设计与执行说明。
+      - [BLOCK 1] 该段定义“前端架构与工程规范法典”主题（Topic），用于组织本文件的核心语义边界。
+      - [BLOCK 2] 该段围绕“---”展开（Content Block），承载一组相关实现或说明。
+      - [BLOCK 3] 该段定义“0. 总目标”主题（Topic），用于组织本文件的核心语义边界。
+      - [BLOCK 4] 该段围绕“本规范用于约束 AI 编码智能体和人类开发者，目标是：”展开（Content Block），承载一组相关实现或说明。
+      - [BLOCK 5] 该段定义“1. 技术栈基线”主题（Topic），用于组织本文件的核心语义边界。
+      - [BLOCK 6] 该段定义“1.1 必选技术”主题（Topic），用于组织本文件的核心语义边界。
+      - [BLOCK +] 已合并/省略 195 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+    - [FILE] `docs/SETUP_ENV_CHECKLIST.md`：说明文档（Documentation File），用于沉淀规则、设计与执行说明。
+      - [BLOCK 1] 该段定义“/setup 环境变量替换检查清单（Checklist）”主题（Topic），用于组织本文件的核心语义边界。
+      - [BLOCK 2] 该段围绕“> 目的：在 '/setup' 完成项目名注入后，指导用户将模板值替换为真实环境变量”展开（Content Block），承载一组相关实现或说明。
+      - [BLOCK 3] 该段定义“1) 根目录（Docker Compose）`.env.example`”主题（Topic），用于组织本文件的核心语义边界。
+      - [BLOCK 4] 该段围绕“- [ ] 'POSTGRES_USER'：已确认为项目实际数据库用户名”展开（Content Block），承载一组相关实现或说明。
+      - [BLOCK 5] 该段定义“2) 后端 `backend/.env.example`”主题（Topic），用于组织本文件的核心语义边界。
+      - [BLOCK 6] 该段定义“基础配置”主题（Topic），用于组织本文件的核心语义边界。
+      - [BLOCK +] 已合并/省略 9 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+  - [DIR] `frontend`：前端目录（Frontend），实现 Next.js 页面、组件体系与构建配置。
+    - [DIR] `frontend/src`：前端目录（Frontend），实现 Next.js 页面、组件体系与构建配置。
+      - [DIR] `frontend/src/app`：前端目录（Frontend），实现 Next.js 页面、组件体系与构建配置。
+        - [FILE] `frontend/src/app/globals.css`：工程文件（Project Artifact），用于支撑模块运行、配置或质量保障。
+          - [BLOCK 1] 该段围绕“@import 'tailwindcss';”展开（Content Block），承载一组相关实现或说明。
+          - [BLOCK +] 已合并/省略 2 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+        - [FILE] `frontend/src/app/layout.tsx`：TypeScript 模块（TypeScript Module），承载页面、组件、状态或类型逻辑。
+          - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+          - [BLOCK 2] 该段声明导出（Exports）接口，供其他模块复用能力。
+          - [BLOCK 3] 该段声明导出（Exports）接口，供其他模块复用能力。
+        - [FILE] `frontend/src/app/page.tsx`：TypeScript 模块（TypeScript Module），承载页面、组件、状态或类型逻辑。
+          - [BLOCK 1] 该段声明导出（Exports）接口，供其他模块复用能力。
+      - [DIR] `frontend/src/lib`：前端目录（Frontend），实现 Next.js 页面、组件体系与构建配置。
+        - [FILE] `frontend/src/lib/providers.tsx`：TypeScript 模块（TypeScript Module），承载页面、组件、状态或类型逻辑。
+          - [BLOCK 1] 该段围绕“'use client'”展开（Content Block），承载一组相关实现或说明。
+          - [BLOCK 2] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+          - [BLOCK 3] 该段声明导出（Exports）接口，供其他模块复用能力。
+    - [FILE] `frontend/.env.example`：工程文件（Project Artifact），用于支撑模块运行、配置或质量保障。
+      - [BLOCK 1] 该段定义“Frontend public environment variables”主题（Topic），用于组织本文件的核心语义边界。
+      - [BLOCK 2] 该段定义“后端 API 基础地址（本地开发）”主题（Topic），用于组织本文件的核心语义边界。
+    - [FILE] `frontend/.eslintignore`：工程文件（Project Artifact），用于支撑模块运行、配置或质量保障。
+      - [BLOCK 1] 该段围绕“.next”展开（Content Block），承载一组相关实现或说明。
+    - [FILE] `frontend/.eslintrc.json`：工程文件（Project Artifact），用于支撑模块运行、配置或质量保障。
+      - [BLOCK 1] 该段围绕“{”展开（Content Block），承载一组相关实现或说明。
+    - [FILE] `frontend/Dockerfile`：工程文件（Project Artifact），用于支撑模块运行、配置或质量保障。
+      - [BLOCK 1] 该段围绕“FROM node:22-alpine”展开（Content Block），承载一组相关实现或说明。
+      - [BLOCK 2] 该段定义“Keep runtime install behavior in compose command for local dev hot-reload.”主题（Topic），用于组织本文件的核心语义边界。
+      - [BLOCK +] 已合并/省略 1 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+    - [FILE] `frontend/next-env.d.ts`：TypeScript 模块（TypeScript Module），承载页面、组件、状态或类型逻辑。
+      - [BLOCK 1] 该段围绕“/// <reference types="next" />”展开（Content Block），承载一组相关实现或说明。
+      - [BLOCK +] 已合并/省略 1 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+    - [FILE] `frontend/next.config.ts`：TypeScript 模块（TypeScript Module），承载页面、组件、状态或类型逻辑。
+      - [BLOCK 1] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+      - [BLOCK 2] 该段围绕“const nextConfig: NextConfig = {}”展开（Content Block），承载一组相关实现或说明。
+      - [BLOCK 3] 该段声明导出（Exports）接口，供其他模块复用能力。
+    - [FILE] `frontend/package.json`：工程文件（Project Artifact），用于支撑模块运行、配置或质量保障。
+      - [BLOCK 1] 该段围绕“{”展开（Content Block），承载一组相关实现或说明。
+    - [FILE] `frontend/pnpm-lock.yaml`：YAML 配置（YAML Config），用于容器编排或 CI 流程定义。
+      - [BLOCK 1] 该段围绕“lockfileVersion: '9.0'”展开（Content Block），承载一组相关实现或说明。
+      - [BLOCK +] 已合并/省略 721 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+    - [FILE] `frontend/tsconfig.json`：工程文件（Project Artifact），用于支撑模块运行、配置或质量保障。
+      - [BLOCK 1] 该段围绕“{”展开（Content Block），承载一组相关实现或说明。
+  - [DIR] `scripts`：脚本目录（Scripts），提供项目自动化生成、检查与维护命令。
+    - [FILE] `scripts/check_env_replacements.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+      - [BLOCK 1] 该段定义“!/usr/bin/env python3”主题（Topic），用于组织本文件的核心语义边界。
+      - [BLOCK 2] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+      - [BLOCK 3] 该段围绕“ROOT = Path(__file__).parent.parent”展开（Content Block），承载一组相关实现或说明。
+      - [BLOCK 4] 该段定义函数 `parse_env_file`（Function），封装一个可复用的处理步骤。
+      - [BLOCK 5] 该段定义函数 `check_non_empty`（Function），封装一个可复用的处理步骤。
+      - [BLOCK 6] 该段定义函数 `check_not_contains`（Function），封装一个可复用的处理步骤。
+      - [BLOCK +] 已合并/省略 24 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+    - [FILE] `scripts/verify_setup.py`：Python 模块（Python Module），承载后端逻辑、脚本任务或测试用例。
+      - [BLOCK 1] 该段定义“!/usr/bin/env python3”主题（Topic），用于组织本文件的核心语义边界。
+      - [BLOCK 2] 该段围绕“验证 /setup 执行后的仓库就绪性是否满足规范要求。”展开（Content Block），承载一组相关实现或说明。
+      - [BLOCK 3] 该段声明依赖导入（Imports），为后续实现提供模块能力与类型引用。
+      - [BLOCK 4] 该段定义“颜色输出”主题（Topic），用于组织本文件的核心语义边界。
+      - [BLOCK 5] 该段围绕“CheckResult = Literal["pass", "fail", "ski”展开（Content Block），承载一组相关实现或说明。
+      - [BLOCK 6] 该段定义类 `Checker`（Class），用于组织状态与相关行为。
+      - [BLOCK +] 已合并/省略 36 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+  - [FILE] `.env.example`：工程文件（Project Artifact），用于支撑模块运行、配置或质量保障。
+    - [BLOCK 1] 该段定义“Root env for docker compose”主题（Topic），用于组织本文件的核心语义边界。
+  - [FILE] `AGENTS.md`：全局智能体规约（Agent Contract），约束执行流程、质量门禁与输出格式。
+    - [BLOCK 1] 该段定义“项目开发全局规约”主题（Topic），用于组织本文件的核心语义边界。
+    - [BLOCK 2] 该段围绕“> 本文件是 AI 编码智能体（LLM）的行为约束文件。人类开发者请阅读 [VIBE”展开（Content Block），承载一组相关实现或说明。
+    - [BLOCK 3] 该段定义“1. 角色与定位”主题（Topic），用于组织本文件的核心语义边界。
+    - [BLOCK 4] 该段围绕“本项目采用"敏捷 Vibe Coding（Agile Vibe Coding）"模式”展开（Content Block），承载一组相关实现或说明。
+    - [BLOCK 5] 该段定义“2. 规范文件（单一事实来源）”主题（Topic），用于组织本文件的核心语义边界。
+    - [BLOCK 6] 该段围绕“编写任何代码前，必须严格读取并遵守：”展开（Content Block），承载一组相关实现或说明。
+    - [BLOCK +] 已合并/省略 73 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+  - [FILE] `BACKLOG.md`：说明文档（Documentation File），用于沉淀规则、设计与执行说明。
+    - [BLOCK 1] 该段定义“需求池（Backlog）”主题（Topic），用于组织本文件的核心语义边界。
+    - [BLOCK 2] 该段围绕“> 日常开发禁读此文件。由 PM 角色维护。”展开（Content Block），承载一组相关实现或说明。
+    - [BLOCK 3] 该段定义“P0（必须做）”主题（Topic），用于组织本文件的核心语义边界。
+    - [BLOCK 4] 该段围绕“<!-- 示例：”展开（Content Block），承载一组相关实现或说明。
+    - [BLOCK 5] 该段定义“P1（应该做）”主题（Topic），用于组织本文件的核心语义边界。
+    - [BLOCK 6] 该段围绕“<!-- 示例：”展开（Content Block），承载一组相关实现或说明。
+    - [BLOCK +] 已合并/省略 3 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+  - [FILE] `CHANGELOG.md`：说明文档（Documentation File），用于沉淀规则、设计与执行说明。
+    - [BLOCK 1] 该段定义“Changelog”主题（Topic），用于组织本文件的核心语义边界。
+    - [BLOCK 2] 该段围绕“> 已完成任务的归档记录。禁止修改历史记录。”展开（Content Block），承载一组相关实现或说明。
+    - [BLOCK 3] 该段定义“[基建] 完成项目基础脚手架搭建 — 2026-05-08”主题（Topic），用于组织本文件的核心语义边界。
+    - [BLOCK 4] 该段围绕“- 后端：FastAPI + uv + PostgreSQL + SQLAlchem”展开（Content Block），承载一组相关实现或说明。
+    - [BLOCK 5] 该段定义“[feat] 用户注册与登录 — 2026-05-10”主题（Topic），用于组织本文件的核心语义边界。
+    - [BLOCK 6] 该段围绕“- PR: https://github.com/xxx/xxx/pull/1”展开（Content Block），承载一组相关实现或说明。
+    - [BLOCK +] 已合并/省略 4 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+  - [FILE] `LICENSE`：工程文件（Project Artifact），用于支撑模块运行、配置或质量保障。
+    - [BLOCK 1] 该段围绕“Apache License”展开（Content Block），承载一组相关实现或说明。
+    - [BLOCK +] 已合并/省略 32 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+  - [FILE] `README.md`：项目入口文档（Entry Doc），说明目标、结构、启动方式与贡献流程。
+    - [BLOCK 1] 该段定义“monorepo”主题（Topic），用于组织本文件的核心语义边界。
+    - [BLOCK 2] 该段围绕“一个面向 AI 协作开发的全栈 Monorepo 模板，技术栈为 **FastAPI”展开（Content Block），承载一组相关实现或说明。
+    - [BLOCK 3] 该段定义“这是什么”主题（Topic），用于组织本文件的核心语义边界。
+    - [BLOCK 4] 该段围绕“- 适用于前后端分离的 SaaS / 管理后台 / API 服务项目”展开（Content Block），承载一组相关实现或说明。
+    - [BLOCK 5] 该段定义“适合谁”主题（Topic），用于组织本文件的核心语义边界。
+    - [BLOCK 6] 该段围绕“- 想快速启动企业级全栈项目的个人或小团队”展开（Content Block），承载一组相关实现或说明。
+    - [BLOCK +] 已合并/省略 36 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+  - [FILE] `SPRINT.md`：说明文档（Documentation File），用于沉淀规则、设计与执行说明。
+    - [BLOCK 1] 该段定义“当前冲刺（Sprint）”主题（Topic），用于组织本文件的核心语义边界。
+    - [BLOCK 2] 该段围绕“> 修改代码前后必读此文件。记录正在执行的任务。”展开（Content Block），承载一组相关实现或说明。
+    - [BLOCK 3] 该段定义“Sprint 1 — 项目基础脚手架”主题（Topic），用于组织本文件的核心语义边界。
+    - [BLOCK 4] 该段围绕“**目标：** 完成 backend/ 和 frontend/ 的基础脚手架，使项目”展开（Content Block），承载一组相关实现或说明。
+    - [BLOCK 5] 该段定义“Sprint N — <主题>”主题（Topic），用于组织本文件的核心语义边界。
+    - [BLOCK 6] 该段围绕“**目标：** <本次冲刺要达成的核心目标>”展开（Content Block），承载一组相关实现或说明。
+    - [BLOCK +] 已合并/省略 12 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。
+  - [FILE] `docker-compose.yml`：YAML 配置（YAML Config），用于容器编排或 CI 流程定义。
+    - [BLOCK 1] 该段定义服务编排（Service Compose）配置，描述组件关系与运行参数。
+    - [BLOCK 2] 该段围绕“backend:”展开（Content Block），承载一组相关实现或说明。
+    - [BLOCK +] 已合并/省略 2 个相似或次要段落块（Merged/Omitted Blocks）以保持全局可读性。

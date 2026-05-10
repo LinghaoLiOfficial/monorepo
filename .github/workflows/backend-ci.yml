@@ -24,3 +24,5 @@ jobs:
       - run: uv run ruff format --check .
       - run: uv run mypy app tests
       - run: uv run pytest -q
+      - run: python3 scripts/check_project_map.py
+        working-directory: .
